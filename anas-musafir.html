@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أنس — مسافر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:         #F0F9FF;
+  --bg-card:    #FFFFFF;
+  --bg-hover:   #F7FBFF;
+  --bg-feat:    #EBF6FF;
+  --blue:       #0284C7;
+  --blue-hi:    #0369A1;
+  --blue-pale:  #DBEAFE;
+  --blue-text:  #1E40AF;
+  --slate:      #475569;
+  --slate-hi:   #334155;
+  --text:       #0F172A;
+  --muted:      #64748B;
+  --border:     rgba(2,132,199,.12);
+  --border-hi:  rgba(2,132,199,.3);
+  --badge-bg:   rgba(2,132,199,.07);
+  --shadow:     0 1px 10px rgba(2,132,199,.08);
+  --radius:     14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Noto Naskh Arabic','Dubai',serif;
+  min-height:100vh;direction:rtl;
+  -webkit-font-smoothing:antialiased;
+}
+body.ltr{direction:ltr;font-family:'Cormorant Garamond',Georgia,serif}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse 80% 45% at 50% 0%,rgba(2,132,199,.07) 0%,transparent 55%);
+  pointer-events:none;
+}
+.wrap{position:relative;z-index:1;max-width:500px;margin:0 auto;padding:28px 18px 60px}
+
+/* ---- Lang ---- */
+.lang-row{display:flex;justify-content:center;margin-bottom:26px}
+.pill{display:flex;gap:2px;padding:3px;background:rgba(2,132,199,.07);border:1px solid var(--border);border-radius:999px}
+.lang-btn{padding:6px 22px;border:none;background:transparent;color:var(--muted);border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.07em;cursor:pointer;transition:background .22s,color .22s;font-family:inherit}
+.lang-btn.on{background:var(--blue);color:#fff}
+
+/* ---- Hero ---- */
+.hero{text-align:center;margin-bottom:30px;animation:up .5s ease both}
+.avatar{
+  width:74px;height:74px;margin:0 auto 13px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue) 0%,var(--slate) 100%);
+  display:flex;align-items:center;justify-content:center;font-size:28px;
+  box-shadow:0 0 0 3px var(--bg),0 0 0 5px rgba(2,132,199,.22),var(--shadow);
+}
+.brand{font-size:22px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+.tagline{font-size:14px;color:var(--muted);line-height:1.78;max-width:290px;margin:0 auto 14px;white-space:pre-line}
+.badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.badge{display:inline-flex;align-items:center;gap:5px;background:var(--badge-bg);border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-size:11px;color:var(--blue-text);font-weight:600}
+
+/* ---- Label ---- */
+.label{font-size:10px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--blue);text-align:center;margin-bottom:13px;opacity:.85}
+
+/* ---- Cards ---- */
+.cards{display:grid;grid-template-columns:1fr;gap:11px;margin-bottom:30px}
+.card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:17px;display:flex;gap:13px;
+  align-items:flex-start;box-shadow:var(--shadow);
+  transition:border-color .25s,background .25s,transform .25s,box-shadow .25s;
+  animation:up .5s ease both;
+}
+.card:nth-child(1){animation-delay:.07s}
+.card:nth-child(2){animation-delay:.14s}
+.card:nth-child(3){animation-delay:.21s}
+.card:nth-child(4){animation-delay:.28s}
+.card:nth-child(5){animation-delay:.35s}
+.card:hover{border-color:var(--border-hi);background:var(--bg-hover);transform:translateY(-2px);box-shadow:0 8px 28px rgba(2,132,199,.12)}
+.card.star{border-color:rgba(2,132,199,.28);background:var(--bg-feat)}
+
+.ico{font-size:22px;flex-shrink:0;min-width:42px;height:42px;background:var(--badge-bg);border-radius:11px;display:flex;align-items:center;justify-content:center}
+.info{flex:1;min-width:0;display:flex;flex-direction:column}
+.star-tag{display:inline-flex;align-items:center;gap:3px;background:rgba(2,132,199,.1);border:1px solid rgba(2,132,199,.28);border-radius:999px;padding:2px 9px;font-size:10px;font-weight:700;color:var(--blue);margin-bottom:5px;font-family:'Noto Naskh Arabic',serif}
+.c-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.4}
+.c-desc{font-size:12px;color:var(--muted);line-height:1.65;margin-bottom:11px;flex:1}
+.c-foot{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.price{display:flex;flex-direction:column;gap:1px}
+.price-main{font-size:15px;font-weight:700;color:var(--blue-text)}
+.price-sub{font-size:10.5px;color:var(--muted);font-weight:500}
+
+/* ---- Buttons ---- */
+.btn{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:8px 16px;background:var(--blue);color:#fff;
+  border-radius:999px;font-size:12px;font-weight:700;
+  text-decoration:none;cursor:pointer;border:none;white-space:nowrap;
+  font-family:'Noto Naskh Arabic',serif;
+  transition:background .2s,transform .15s,box-shadow .15s;
+  box-shadow:0 2px 8px rgba(2,132,199,.25);
+}
+.btn:hover{background:var(--blue-hi);transform:scale(1.04);box-shadow:0 4px 14px rgba(2,132,199,.3)}
+.btn.soon{background:var(--slate);cursor:default;transform:none!important;box-shadow:none}
+
+/* ---- Socials ---- */
+.socials{margin-bottom:30px}
+.soc-row{display:flex;gap:10px;justify-content:center}
+.soc{
+  flex:1;max-width:140px;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:12px;background:var(--bg-card);border:1px solid var(--border);
+  border-radius:12px;color:var(--muted);text-decoration:none;
+  font-size:13px;font-weight:500;box-shadow:var(--shadow);
+  transition:border-color .25s,color .25s,background .25s;
+}
+.soc:hover{border-color:var(--border-hi);color:var(--blue);background:var(--bg-hover)}
+
+/* ---- Footer ---- */
+.foot{text-align:center;font-size:10px;color:var(--muted);opacity:.4}
+
+/* ---- Animations ---- */
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ════════════════════════════════════════════
+   RESPONSIVE — 3 مستويات
+   ════════════════════════════════════════════
+
+   📱 Mobile  < 640px   : عمود واحد
+   📟 Tablet  640-1023px: عمودان
+   🖥  Desktop ≥ 1024px : ثلاثة أعمدة
+   ════════════════════════════════════════════ */
+
+/* ── Mobile default ─────────────────────────── */
+.card{flex-direction:row}
+.c-foot{flex-direction:row;align-items:center;justify-content:space-between}
+
+/* ── Tablet (640px+) ────────────────────────── */
+@media(min-width:640px){
+  .wrap{max-width:720px;padding:38px 24px 64px}
+  .cards{grid-template-columns:1fr 1fr;gap:13px}
+  .card{flex-direction:column;gap:11px;align-items:stretch}
+  .c-foot{flex-direction:column;align-items:stretch;gap:10px}
+  .btn{width:100%;justify-content:center}
+  .soc{max-width:160px}
+}
+
+/* ── Desktop (1024px+) ──────────────────────── */
+@media(min-width:1024px){
+  .wrap{max-width:1000px;padding:56px 40px 80px}
+  .avatar{width:90px;height:90px;font-size:34px}
+  .brand{font-size:27px}
+  .tagline{font-size:15px;max-width:520px}
+  .cards{grid-template-columns:repeat(3,1fr);gap:16px}
+  .c-name{font-size:14.5px}
+  .c-desc{font-size:12.5px}
+  .soc{max-width:190px;padding:14px;font-size:14px}
+}
+
+/* ---- Lang sections ---- */
+.sec-fr{display:none}
+body.ltr .sec-ar{display:none}
+body.ltr .sec-fr{display:block}
+body.ltr .star-tag,body.ltr .btn{font-family:'Cormorant Garamond',Georgia,serif}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lang-row">
+    <div class="pill">
+      <button class="lang-btn on" onclick="setLang('ar')">العربية</button>
+      <button class="lang-btn"    onclick="setLang('fr')">Français</button>
+    </div>
+  </div>
+  <div class="sec-ar" id="sec-ar"></div>
+  <div class="sec-fr" id="sec-fr"></div>
+</div>
+
+<script>
+/* ================================================================
+   ⚙️  CONFIG — كل التعديلات هنا فقط
+   ================================================================
+
+   روابط الدفع:
+   - اتركها "#" وتظهر "قريباً" للزوار
+   - حطّ رابط Gumroad أو Lemon Squeezy أو Paddle مباشرة لما تكون جاهز
+   - الزبون يضغط ← يروح مباشرة لصفحة الدفع، بدون أي خطوة وسيطة
+
+   ================================================================ */
+const CFG = {
+
+  /* ── البراند ─────────────────────────────────────────────── */
+  brandAr:   "أنس — مسافر",
+  brandFr:   "Anas — Voyageur",
+
+  taglineAr: "قضيت ٧ أشهر أتجول في شرق آسيا وحيداً\nهلأ أساعدك تخطط رحلتك الصح",
+  taglineFr: "7 mois à voyager seul en Asie du Sud-Est\nJe vous aide à planifier votre voyage",
+
+  badgesAr: ["✈️ ٧ أشهر في شرق آسيا","🗺️ ماليزيا · سنغافورة · إندونيسيا · بالي"],
+  badgesFr: ["✈️ 7 mois en Asie du Sud-Est","🗺️ Malaisie · Singapour · Indonésie · Bali"],
+
+  /* ── روابط التواصل ──────────────────────────────────────── */
+  tiktok:    "#",   /* ← رابط TikTok   */
+  instagram: "#",   /* ← رابط Instagram */
+
+  /* ── الخدمات ────────────────────────────────────────────── */
+  /* لإضافة خدمة: انسخ كتلة{...} وأضفها في القائمة          */
+  /* لحذف خدمة:  احذف كتلتها كاملاً                          */
+  /* link: "#"   ← يظهر "قريباً" للزائر                       */
+  /* link: "URL" ← يذهب مباشرة لصفحة الدفع                  */
+
+  services: [
+    {
+      icon:       "📖",
+      nameAr:     "دليل شرق آسيا للمسافر العربي",
+      nameFr:     "Guide Complet — Asie du Sud-Est",
+      descAr:     "دليل شامل مبني على تجربتي الشخصية — أماكن، ميزانية، ونصايح ما تلقاها عند غيري",
+      descFr:     "Un guide basé sur mon expérience — lieux, budget, et conseils introuvables ailleurs",
+      priceSAR:   49,
+      priceUSD:   13,
+      prefixAr:   "",         /* "من" أو "" */
+      prefixFr:   "",
+      btnAr:      "احصل على الدليل",
+      btnFr:      "Obtenir le guide",
+      link:       "#",        /* ← رابط Gumroad */
+      featured:   true,
+      starTagAr:  "⭐ الأكثر طلباً",
+      starTagFr:  "⭐ Le plus demandé",
+    },
+    {
+      icon:       "💬",
+      nameAr:     "استشارة سفر — ٣٠ دقيقة",
+      nameFr:     "Consultation voyage — 30 min",
+      descAr:     "اسأل كل أسئلتك وخطط رحلتك مع شخص عاش التجربة فعلاً",
+      descFr:     "Posez toutes vos questions avec quelqu'un qui a vécu l'expérience",
+      priceSAR:   109,
+      priceUSD:   29,
+      prefixAr:   "",
+      prefixFr:   "",
+      btnAr:      "احجز الاستشارة",
+      btnFr:      "Réserver",
+      link:       "#",        /* ← رابط Gumroad / Calendly مع دفع مسبق */
+      featured:   false,
+    },
+    {
+      icon:       "🗓️",
+      nameAr:     "خطة سفر شهر كامل",
+      nameFr:     "Itinéraire 1 mois complet",
+      descAr:     "خطة مخصصة من البداية للنهاية — وجهات، فنادق، ميزانية يومية",
+      descFr:     "Un plan personnalisé du début à la fin — destinations, hôtels, budget quotidien",
+      priceSAR:   370,
+      priceUSD:   99,
+      prefixAr:   "من ",
+      prefixFr:   "À partir de ",
+      btnAr:      "اطلب خطتك",
+      btnFr:      "Commander",
+      link:       "#",
+      featured:   false,
+    },
+    {
+      icon:       "🌏",
+      nameAr:     "خطة سفر ٣ شهور",
+      nameFr:     "Itinéraire 3 mois",
+      descAr:     "تخطط ترحال طويل؟ خطة كاملة من أول يوم لآخر يوم",
+      descFr:     "Long voyage ? Un plan complet du premier au dernier jour",
+      priceSAR:   560,
+      priceUSD:   149,
+      prefixAr:   "من ",
+      prefixFr:   "À partir de ",
+      btnAr:      "اطلب خطتك",
+      btnFr:      "Commander",
+      link:       "#",
+      featured:   false,
+    },
+    {
+      icon:       "📋",
+      nameAr:     "مساعدة في تأشيرة شرق آسيا",
+      nameFr:     "Aide Visa Asie du Sud-Est",
+      descAr:     "أساعدك تحضّر ملف التأشيرة بشكل صح — خطوة بخطوة بدون أخطاء",
+      descFr:     "Je vous aide à préparer votre dossier de visa étape par étape",
+      priceSAR:   150,
+      priceUSD:   40,
+      prefixAr:   "",
+      prefixFr:   "",
+      btnAr:      "اطلب المساعدة",
+      btnFr:      "Demander l'aide",
+      link:       "#",
+      featured:   false,
+    },
+  ],
+};
+
+/* ================================================================
+   Render — لا تعدّل من هنا
+   ================================================================ */
+function buildSection(lang) {
+  const ar = lang === 'ar';
+
+  const cards = CFG.services.map(s => {
+    const name    = ar ? s.nameAr  : s.nameFr;
+    const desc    = ar ? s.descAr  : s.descFr;
+    const btnTxt  = ar ? s.btnAr   : s.btnFr;
+    const prefix  = ar ? (s.prefixAr || '') : (s.prefixFr || '');
+    const starTag = s.featured ? (ar ? s.starTagAr : s.starTagFr) : '';
+    const pmain   = `${prefix}${s.priceSAR} ر.س`;
+    const psub    = `${prefix}$${s.priceUSD}`;
+    const isLive  = s.link && s.link !== '#';
+
+    const btn = isLive
+      ? `<a href="${s.link}" target="_blank" rel="noopener" class="btn">${btnTxt} ←</a>`
+      : `<button class="btn soon" onclick="showSoon(this,'${btnTxt}')">${btnTxt}</button>`;
+
+    return `
+    <div class="card${s.featured?' star':''}">
+      <div class="ico">${s.icon}</div>
+      <div class="info">
+        ${starTag ? `<div class="star-tag">${starTag}</div>` : ''}
+        <div class="c-name">${name}</div>
+        <div class="c-desc">${desc}</div>
+        <div class="c-foot">
+          <div class="price">
+            <span class="price-main">${pmain}</span>
+            <span class="price-sub">${psub}</span>
+          </div>
+          ${btn}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  const brand      = ar ? CFG.brandAr   : CFG.brandFr;
+  const tagline    = ar ? CFG.taglineAr : CFG.taglineFr;
+  const badges     = ar ? CFG.badgesAr  : CFG.badgesFr;
+  const secLabel   = ar ? 'خدماتي'    : 'Mes Services';
+  const followLbl  = ar ? 'تابعني'    : 'Me suivre';
+  const footTxt    = ar ? `${CFG.brandAr} · جميع الحقوق محفوظة` : `${CFG.brandFr} · Tous droits réservés`;
+
+  return `
+    <div class="hero">
+      <div class="avatar">🧳</div>
+      <h1 class="brand">${brand}</h1>
+      <p class="tagline">${tagline}</p>
+      <div class="badges">${badges.map(b=>`<span class="badge">${b}</span>`).join('')}</div>
+    </div>
+    <div class="label">${secLabel}</div>
+    <div class="cards">${cards}</div>
+    <div class="socials">
+      <div class="label">${followLbl}</div>
+      <div class="soc-row">
+        <a href="${CFG.tiktok}"    target="_blank" class="soc">🎵 TikTok</a>
+        <a href="${CFG.instagram}" target="_blank" class="soc">📸 Instagram</a>
+      </div>
+    </div>
+    <p class="foot">${footTxt}</p>`;
+}
+
+document.getElementById('sec-ar').innerHTML = buildSection('ar');
+document.getElementById('sec-fr').innerHTML = buildSection('fr');
+
+/* ---- Language switch ---- */
+const langBtns = document.querySelectorAll('.lang-btn');
+function setLang(l) {
+  if (l === 'fr') {
+    document.body.classList.add('ltr');
+    document.documentElement.lang = 'fr';
+    document.documentElement.dir = 'ltr';
+    langBtns[0].classList.remove('on');
+    langBtns[1].classList.add('on');
+  } else {
+    document.body.classList.remove('ltr');
+    document.documentElement.lang = 'ar';
+    document.documentElement.dir = 'rtl';
+    langBtns[0].classList.add('on');
+    langBtns[1].classList.remove('on');
+  }
+}
+
+/* ---- Coming-soon feedback ---- */
+function showSoon(btn, label) {
+  const isFr = document.body.classList.contains('ltr');
+  btn.textContent = isFr ? 'Bientôt disponible ✨' : 'قريباً — ابقَ على تواصل ✨';
+  setTimeout(() => { btn.textContent = label; }, 2500);
+}
+</script>
+</body>
+</html>
