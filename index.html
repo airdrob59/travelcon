@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>أنس — مسافر | خدمات سفر</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%230284C7'/><text x='50' y='70' text-anchor='middle' font-size='58' fill='white' font-family='Georgia,serif'>أ</text></svg>">
-<meta name="description" content="أنس — مسافر | استشارات سفر، خطط سياحية، ودليل شرق آسيا">
+<title>أنس — مسافر</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
@@ -145,6 +143,11 @@ body[data-lang="en"] .sec-en{display:block}
 .ait.open .ait-body{display:block}
 .ait-ch{font-size:9px;color:#94A3B8;transition:transform .2s;flex-shrink:0}
 .ait.open .ait-ch{transform:rotate(180deg)}
+.ait.is-hidden{opacity:.6}
+.ait.is-hidden .ait-ico{filter:grayscale(1)}
+.hid-tag{font-size:9px;font-weight:700;color:#DC2626;background:#FEF2F2;border:1px solid #FCA5A5;border-radius:999px;padding:1px 8px;flex-shrink:0}
+.vis-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;background:#F0F9FF;border:1px solid #BAE6FD;border-radius:9px;margin-bottom:12px}
+.vis-lbl{font-size:12px;font-weight:700;color:#0369A1}
 .adel{display:inline-flex;align-items:center;gap:4px;padding:5px 11px;background:none;border:1px solid #FCA5A5;border-radius:7px;color:#DC2626;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;margin-top:8px}
 .adel:hover{background:#FEF2F2}
 .aadd{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:10px;background:#F0F9FF;border:1px dashed #BAE6FD;border-radius:9px;color:#0284C7;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;margin-top:2px}
@@ -350,10 +353,11 @@ function save(){localStorage.setItem('anas_d',JSON.stringify(D));flash()}
 function redraw(){save();renderPage();renderPrev()}
 
 /* ════ RENDERER ════ */
-function buildSec(lang){
+function buildSec(lang,showHidden){
   const ar=lang==='ar',en=lang==='en';
   const T=(a,f,e)=>ar?a:en?e:f;
-  const cards=D.services.map(s=>{
+  const list=showHidden?D.services:D.services.filter(s=>!s.hidden);
+  const cards=list.map(s=>{
     const nm=T(s.nameAr,s.nameFr,s.nameEn),ds=T(s.descAr,s.descFr,s.descEn),
           bt=T(s.btnAr,s.btnFr,s.btnEn),pf=T(s.prefixAr,s.prefixFr,s.prefixEn)||'',
           nt=T(s.noteAr,s.noteFr,s.noteEn),st=s.featured?T(s.starTagAr,s.starTagFr,s.starTagEn):'';
@@ -371,8 +375,8 @@ function buildSec(lang){
   const av=(D.avatar||'').startsWith('http')||(D.avatar||'').startsWith('/')?`<img src="${esc(D.avatar)}" alt="">`:`<span>${D.avatar||'🧳'}</span>`;
   return`<div class="hero"><div class="avatar">${av}</div><h1 class="brand">${esc(br)}</h1><p class="tagline">${esc(tl)}</p><div class="badges">${(bg||[]).map(b=>`<span class="badge">${esc(b)}</span>`).join('')}</div></div><div class="label">${svcLbl}</div><div class="cards">${cards}</div><div class="socials"><div class="label">${socLbl}</div><div class="soc-row">${soc}</div></div><div class="legal"><div class="label">${legLbl}</div><div class="legal-items">${li}</div></div><p class="foot">${esc(footTxt)}</p>`;
 }
-function renderPage(){['ar','fr','en'].forEach(l=>document.getElementById('sec-'+l).innerHTML=buildSec(l))}
-function renderPrev(){['ar','fr','en'].forEach(l=>document.getElementById('pv-'+l).innerHTML=buildSec(l))}
+function renderPage(){['ar','fr','en'].forEach(l=>document.getElementById('sec-'+l).innerHTML=buildSec(l,false))}
+function renderPrev(){['ar','fr','en'].forEach(l=>document.getElementById('pv-'+l).innerHTML=buildSec(l,true))}
 
 /* ════ LANG ════ */
 const lbBtns=document.querySelectorAll('.wrap>.lang-row .lang-btn');
@@ -460,11 +464,15 @@ function tBrand(){return`
 /* ════ TAB: SERVICES ════ */
 function tServices(){
   const items=D.services.map((s,i)=>`
-  <div class="ait" id="asv${i}">
+  <div class="ait${s.hidden?' is-hidden':''}" id="asv${i}">
     <div class="ait-h" onclick="document.getElementById('asv${i}').classList.toggle('open')">
-      <span class="ait-ico">${s.icon}</span><span class="ait-nm">${esc(s.nameAr)}</span><span class="ait-ch">▼</span>
+      <span class="ait-ico">${s.icon}</span><span class="ait-nm">${esc(s.nameAr)}</span>${s.hidden?'<span class="hid-tag">مخفي</span>':''}<span class="ait-ch">▼</span>
     </div>
     <div class="ait-body">
+      <div class="vis-row">
+        <span class="vis-lbl">${s.hidden?'🚫 مخفي من الموقع':'✅ ظاهر في الموقع'}</span>
+        <label class="atgl"><input type="checkbox" ${s.hidden?'':'checked'} onchange="D.services[${i}].hidden=!this.checked;tab('svs');redraw()"><span class="atgl-s"></span></label>
+      </div>
       <div class="arow">
         <div class="af"><label class="al">أيقونة</label><input class="ai" value="${esc(s.icon)}" oninput="D.services[${i}].icon=this.value;redraw()"></div>
         <div class="af"><label class="al">رابط الدفع</label><input class="ai" value="${esc(s.link)}" placeholder="https://..." oninput="D.services[${i}].link=this.value;redraw()"></div>
@@ -509,7 +517,7 @@ function tServices(){
   return`${items}<button class="aadd" onclick="addSvc()">+ إضافة خدمة جديدة</button>`;
 }
 function addSvc(){
-  D.services.push({icon:'✨',nameAr:'خدمة جديدة',nameFr:'Nouveau service',nameEn:'New Service',descAr:'الوصف',descFr:'Description',descEn:'Description',priceSAR:0,priceUSD:0,prefixAr:'',prefixFr:'',prefixEn:'',noteAr:'',noteFr:'',noteEn:'',btnAr:'اطلب',btnFr:'Commander',btnEn:'Order',link:'#',featured:false,starTagAr:'',starTagFr:'',starTagEn:''});
+  D.services.push({icon:'✨',nameAr:'خدمة جديدة',nameFr:'Nouveau service',nameEn:'New Service',descAr:'الوصف',descFr:'Description',descEn:'Description',priceSAR:0,priceUSD:0,prefixAr:'',prefixFr:'',prefixEn:'',noteAr:'',noteFr:'',noteEn:'',btnAr:'اطلب',btnFr:'Commander',btnEn:'Order',link:'#',featured:false,hidden:false,starTagAr:'',starTagFr:'',starTagEn:''});
   tab('svs');redraw();
   setTimeout(()=>{const all=document.querySelectorAll('.ait');all[all.length-1]?.classList.add('open')},60);
 }
@@ -575,241 +583,7 @@ async function saveCreds(){
 /* ════ EXPORT ════ */
 async function exportFile(){
   if(!ORIG){alert('انتظر لحظة وأعد المحاولة');return}
-  const rep=`/* ==CFG_EXPORT_START== */
-const DEFAULT_CFG = {
-  "brandAr": "أنس — مسافر",
-  "brandFr": "Anas — Voyageur",
-  "brandEn": "Anas — Traveler",
-  "taglineAr": "انسان حالم ومتفائل ويحب السفر\nأقدم استشارات وخطط سياحية وحجوزات\nوتقديم على الفيز الإلكترونية",
-  "taglineFr": "Un rêveur optimiste passionné de voyage\nConsultations, plans de voyage et réservations\nDemandes de visa électronique",
-  "taglineEn": "A dreamer who loves to travel\nTravel consultations, itineraries & bookings\nOnline visa applications",
-  "avatar": "🧳",
-  "badgesAr": [
-    "✈️ شرق آسيا",
-    "🎒 رحلة باك باكنق",
-    "💍 رحلة شهر العسل"
-  ],
-  "badgesFr": [
-    "✈️ Asie du Sud-Est",
-    "🎒 Voyage Backpacking",
-    "💍 Voyage de Noces"
-  ],
-  "badgesEn": [
-    "✈️ Southeast Asia",
-    "🎒 Backpacking Trip",
-    "💍 Honeymoon Trips"
-  ],
-  "socials": [
-    {
-      "icon": "🎵",
-      "name": "TikTok",
-      "url": "#"
-    },
-    {
-      "icon": "📸",
-      "name": "Instagram",
-      "url": "#"
-    }
-  ],
-  "services": [
-    {
-      "icon": "📖",
-      "nameAr": "دليل شرق آسيا",
-      "nameFr": "Guide Asie du Sud-Est",
-      "nameEn": "Southeast Asia Guide",
-      "descAr": "دليلك المتكامل للسفر الى دول شرق آسيا",
-      "descFr": "Votre guide complet pour voyager en Asie du Sud-Est",
-      "descEn": "Your complete guide to traveling Southeast Asia",
-      "priceSAR": 50,
-      "priceUSD": 13,
-      "prefixAr": "",
-      "prefixFr": "",
-      "prefixEn": "",
-      "noteAr": "",
-      "noteFr": "",
-      "noteEn": "",
-      "btnAr": "احصل على الدليل",
-      "btnFr": "Obtenir le guide",
-      "btnEn": "Get the Guide",
-      "link": "#",
-      "featured": false,
-      "starTagAr": "⭐ الأكثر طلباً",
-      "starTagFr": "⭐ Le plus demandé",
-      "starTagEn": "⭐ Most Popular"
-    },
-    {
-      "icon": "💰",
-      "nameAr": "دليلك للسفر الاقتصادي",
-      "nameFr": "Guide Voyage Économique",
-      "nameEn": "Budget Travel Guide",
-      "descAr": "دليل شامل مبني على تجربتي الشخصية وكل اللي تحتاج عن تسافر بطريقة اقتصادية ونصايح ما تلقاها عند غيري",
-      "descFr": "Un guide complet basé sur mon expérience pour voyager économiquement",
-      "descEn": "A comprehensive guide based on my personal experience — everything you need to travel on a budget, with tips you won't find elsewhere",
-      "priceSAR": 60,
-      "priceUSD": 16,
-      "prefixAr": "",
-      "prefixFr": "",
-      "prefixEn": "",
-      "noteAr": "",
-      "noteFr": "",
-      "noteEn": "",
-      "btnAr": "احصل على الدليل",
-      "btnFr": "Obtenir le guide",
-      "btnEn": "Get the Guide",
-      "link": "#",
-      "featured": false,
-      "starTagAr": "",
-      "starTagFr": "",
-      "starTagEn": ""
-    },
-    {
-      "icon": "💬",
-      "nameAr": "استشارة سفر — ٣٠ دقيقة",
-      "nameFr": "Consultation voyage — 30 min",
-      "nameEn": "Travel Consultation — 30 min",
-      "descAr": "اسأل كل أسئلتك وخطط رحلتك مع شخص عاش التجربة فعلاً",
-      "descFr": "Posez toutes vos questions avec quelqu'un qui a vécu l'expérience",
-      "descEn": "Ask all your questions and plan your trip with someone who's been there",
-      "priceSAR": 109,
-      "priceUSD": 29,
-      "prefixAr": "",
-      "prefixFr": "",
-      "prefixEn": "",
-      "noteAr": "",
-      "noteFr": "",
-      "noteEn": "",
-      "btnAr": "احجز الاستشارة",
-      "btnFr": "Réserver",
-      "btnEn": "Book Now",
-      "link": "#",
-      "featured": true,
-      "starTagAr": "",
-      "starTagFr": "",
-      "starTagEn": ""
-    },
-    {
-      "icon": "🗓️",
-      "nameAr": "خطة سفر شهر كامل",
-      "nameFr": "Itinéraire 1 mois complet",
-      "nameEn": "1-Month Itinerary",
-      "descAr": "خطة مخصصة من البداية للنهاية — وجهات، فنادق، ميزانية يومية",
-      "descFr": "Un plan personnalisé du début à la fin",
-      "descEn": "A personalized plan from start to finish — destinations, hotels, daily budget",
-      "priceSAR": 370,
-      "priceUSD": 99,
-      "prefixAr": "من ",
-      "prefixFr": "À partir de ",
-      "prefixEn": "From ",
-      "noteAr": "",
-      "noteFr": "",
-      "noteEn": "",
-      "btnAr": "اطلب خطتك",
-      "btnFr": "Commander",
-      "btnEn": "Order Your Plan",
-      "link": "#",
-      "featured": true,
-      "starTagAr": "",
-      "starTagFr": "",
-      "starTagEn": ""
-    },
-    {
-      "icon": "🌏",
-      "nameAr": "خطة سفر ٣ شهور",
-      "nameFr": "Itinéraire 3 mois",
-      "nameEn": "3-Month Itinerary",
-      "descAr": "تخطط ترحال طويل؟ خطة كاملة من أول يوم لآخر يوم",
-      "descFr": "Long voyage ? Un plan complet du premier au dernier jour",
-      "descEn": "Planning a long trip? A complete plan from day one to the last day",
-      "priceSAR": 560,
-      "priceUSD": 149,
-      "prefixAr": "من ",
-      "prefixFr": "À partir de ",
-      "prefixEn": "From ",
-      "noteAr": "",
-      "noteFr": "",
-      "noteEn": "",
-      "btnAr": "اطلب خطتك",
-      "btnFr": "Commander",
-      "btnEn": "Order Your Plan",
-      "link": "#",
-      "featured": true,
-      "starTagAr": "",
-      "starTagFr": "",
-      "starTagEn": ""
-    },
-    {
-      "icon": "📋",
-      "nameAr": "التقديم على تأشيرة أونلاين",
-      "nameFr": "Demande de Visa en Ligne",
-      "nameEn": "Online Visa Application",
-      "descAr": "أتولى تقديم طلب تأشيرتك السياحية الإلكترونية بشكل صحيح — أنت تجهّز الأوراق المطلوبة وأنا أتكفل بالتقديم",
-      "descFr": "Je soumets votre demande de visa touristique en ligne — vous préparez les documents, je m'occupe du dépôt",
-      "descEn": "I'll submit your tourist e-visa application — you prepare the required documents, I handle the submission",
-      "priceSAR": 1000,
-      "priceUSD": 267,
-      "prefixAr": "",
-      "prefixFr": "",
-      "prefixEn": "",
-      "noteAr": "بدون رسوم التأشيرة",
-      "noteFr": "Frais de visa non inclus",
-      "noteEn": "Excluding visa fees",
-      "btnAr": "اطلب الخدمة",
-      "btnFr": "Demander le service",
-      "btnEn": "Request Service",
-      "link": "#",
-      "featured": true,
-      "starTagAr": "",
-      "starTagFr": "",
-      "starTagEn": ""
-    }
-  ],
-  "legal": {
-    "ar": [
-      {
-        "title": "شروط الاستخدام",
-        "body": "<p>باستخدامك هذا الموقع أو إتمامك أي عملية شراء، فإنك تُقرّ بموافقتك الكاملة على هذه الشروط. جميع الخدمات ذات طابع <strong>استشاري ومعلوماتي</strong> حصراً. في ما يخص <strong>خدمة التقديم على التأشيرات:</strong> يتولى مقدم الخدمة التقديم إلكترونياً فحسب؛ مسؤولية تجهيز الوثائق وصحتها تقع على العميل وحده. لا يتحمل مقدم الخدمة أي مسؤولية عن نتيجة الطلب.</p>"
-      },
-      {
-        "title": "سياسة الاسترداد",
-        "body": "<p><strong>جميع المبالغ المدفوعة نهائية وغير قابلة للاسترداد</strong> بعد إتمام الشراء دون استثناء. للمنتجات الرقمية: تُرسل فور الدفع ولا يُقبل الاسترداد. للخدمات: لا يُقبل الاسترداد بعد البدء في التنفيذ.</p>"
-      },
-      {
-        "title": "سياسة الخصوصية",
-        "body": "<p>لا يخزّن هذا الموقع أي بيانات شخصية. عمليات الدفع تتم عبر منصات طرف ثالث آمنة. لا تُشارَك أي معلومات مع أطراف خارجية.</p>"
-      }
-    ],
-    "fr": [
-      {
-        "title": "Conditions d'utilisation",
-        "body": "<p>En utilisant ce site ou en effectuant un achat, vous acceptez les présentes conditions. Tous les services sont de nature <strong>consultative et informative</strong>. Concernant le visa : le prestataire dépose uniquement le dossier ; la préparation des documents relève du client. Aucune responsabilité n'est assumée quant au résultat.</p>"
-      },
-      {
-        "title": "Politique de remboursement",
-        "body": "<p><strong>Tous les paiements sont définitifs et non remboursables</strong>, sans exception. Produits numériques : livrés immédiatement, aucun remboursement. Services : aucun remboursement après le début de la prestation.</p>"
-      },
-      {
-        "title": "Politique de confidentialité",
-        "body": "<p>Ce site ne stocke aucune donnée personnelle. Les paiements sont traités par des plateformes tierces sécurisées. Aucune information n'est partagée avec des tiers.</p>"
-      }
-    ],
-    "en": [
-      {
-        "title": "Terms of Service",
-        "body": "<p>By using this website or completing any purchase, you agree to these terms. All services are exclusively <strong>advisory and informational</strong>. Regarding visa applications: the service provider handles the electronic submission only; the client is solely responsible for preparing and ensuring the accuracy of required documents. The service provider bears no legal or financial responsibility for the outcome of any application.</p>"
-      },
-      {
-        "title": "Refund Policy",
-        "body": "<p><strong>All payments are final and non-refundable</strong> after purchase, without exception. Digital products (guides): delivered immediately after payment, no refunds accepted. Services (consultations, travel plans, visa applications): no refunds after work has commenced.</p>"
-      },
-      {
-        "title": "Privacy Policy",
-        "body": "<p>This website does not store any personal data on its servers. Payments are processed through secure third-party platforms. No information is shared with third parties under any circumstances.</p>"
-      }
-    ]
-  }
-};
-const DEFAULT_AUTH = {"u":"8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","p":"ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270"};
-/* ==CFG_EXPORT_END== */`;
+  const rep=`/* ==CFG_EXPORT_START== */\nconst DEFAULT_CFG = ${JSON.stringify(D,null,2)};\nconst DEFAULT_AUTH = ${JSON.stringify(AUTH)};\n/* ==CFG_EXPORT_END== */`;
   const out=ORIG.replace(/\/\* ==CFG_EXPORT_START== \*\/([\s\S]*?)\/\* ==CFG_EXPORT_END== \*\//,rep);
   const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(new Blob([out],{type:'text/html'})),download:'anas-musafir.html'});
   a.click();URL.revokeObjectURL(a.href);
