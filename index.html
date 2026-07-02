@@ -1,1 +1,827 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أنس — مسافر | خدمات سفر</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%230284C7'/><text x='50' y='70' text-anchor='middle' font-size='58' fill='white' font-family='Georgia,serif'>أ</text></svg>">
+<meta name="description" content="أنس — مسافر | استشارات سفر، خطط سياحية، ودليل شرق آسيا">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ══ LANDING PAGE ══════════════════════════════════════════════ */
+:root{
+  --bg:#F0F9FF;--bg-card:#FFF;--bg-hover:#F7FBFF;--bg-feat:#EBF6FF;
+  --blue:#0284C7;--blue-hi:#0369A1;--blue-text:#1E40AF;
+  --slate:#475569;--text:#0F172A;--muted:#64748B;
+  --border:rgba(2,132,199,.12);--border-hi:rgba(2,132,199,.30);
+  --badge-bg:rgba(2,132,199,.07);--shadow:0 1px 10px rgba(2,132,199,.08);--radius:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Noto Naskh Arabic','Dubai',serif;min-height:100vh;direction:rtl;-webkit-font-smoothing:antialiased}
+body[data-lang="fr"],body[data-lang="en"]{direction:ltr;font-family:'Cormorant Garamond',Georgia,serif}
+body::before{content:'';position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 80% 45% at 50% 0%,rgba(2,132,199,.07) 0%,transparent 55%);pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:500px;margin:0 auto;padding:28px 18px 60px}
+.lang-row{display:flex;justify-content:center;margin-bottom:26px}
+.pill{display:flex;gap:2px;padding:3px;background:rgba(2,132,199,.07);border:1px solid var(--border);border-radius:999px}
+.lang-btn{padding:6px 16px;border:none;background:transparent;color:var(--muted);border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:background .22s,color .22s;font-family:inherit}
+.lang-btn.on{background:var(--blue);color:#fff}
+.hero{text-align:center;margin-bottom:30px;animation:up .5s ease both}
+.avatar{width:74px;height:74px;margin:0 auto 13px;border-radius:50%;background:linear-gradient(135deg,var(--blue) 0%,var(--slate) 100%);display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 0 0 3px var(--bg),0 0 0 5px rgba(2,132,199,.22);overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.brand{font-size:22px;font-weight:700;margin-bottom:8px}
+.tagline{font-size:13.5px;color:var(--muted);line-height:1.8;max-width:290px;margin:0 auto 14px;white-space:pre-line}
+.badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.badge{display:inline-flex;align-items:center;gap:5px;background:var(--badge-bg);border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-size:11px;color:var(--blue-text);font-weight:600}
+.label{font-size:10px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--blue);text-align:center;margin-bottom:13px;opacity:.85}
+.cards{display:grid;grid-template-columns:1fr;gap:11px;margin-bottom:30px}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:17px;display:flex;flex-direction:row;gap:13px;align-items:flex-start;box-shadow:var(--shadow);transition:border-color .25s,background .25s,transform .25s,box-shadow .25s;animation:up .5s ease both}
+.card:nth-child(1){animation-delay:.06s}.card:nth-child(2){animation-delay:.12s}.card:nth-child(3){animation-delay:.18s}.card:nth-child(4){animation-delay:.24s}.card:nth-child(5){animation-delay:.30s}.card:nth-child(6){animation-delay:.36s}
+.card:hover{border-color:var(--border-hi);background:var(--bg-hover);transform:translateY(-2px);box-shadow:0 8px 28px rgba(2,132,199,.12)}
+.card.star{border-color:rgba(2,132,199,.28);background:var(--bg-feat)}
+.ico{font-size:22px;flex-shrink:0;min-width:42px;height:42px;background:var(--badge-bg);border-radius:11px;display:flex;align-items:center;justify-content:center}
+.info{flex:1;min-width:0;display:flex;flex-direction:column}
+.star-tag{display:inline-flex;align-items:center;gap:3px;background:rgba(2,132,199,.1);border:1px solid rgba(2,132,199,.28);border-radius:999px;padding:2px 9px;font-size:10px;font-weight:700;color:var(--blue);margin-bottom:5px;font-family:'Noto Naskh Arabic',serif}
+body[data-lang="fr"] .star-tag,body[data-lang="en"] .star-tag{font-family:'Cormorant Garamond',Georgia,serif}
+.c-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.4}
+.c-desc{font-size:12px;color:var(--muted);line-height:1.65;margin-bottom:11px;flex:1}
+.c-foot{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+.price{display:flex;flex-direction:column;gap:1px}
+.price-main{font-size:15px;font-weight:700;color:var(--blue-text)}
+.price-sub{font-size:10.5px;color:var(--muted)}
+.price-note{font-size:10px;color:var(--muted);opacity:.75;font-style:italic}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:8px 16px;background:var(--blue);color:#fff;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none;cursor:pointer;border:none;white-space:nowrap;font-family:'Noto Naskh Arabic',serif;transition:background .2s,transform .15s;box-shadow:0 2px 8px rgba(2,132,199,.25)}
+.btn:hover{background:var(--blue-hi);transform:scale(1.04)}
+.btn.soon{background:var(--slate);cursor:default;transform:none!important;box-shadow:none}
+body[data-lang="fr"] .btn,body[data-lang="en"] .btn{font-family:'Cormorant Garamond',Georgia,serif}
+.socials{margin-bottom:28px}
+.soc-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.soc{flex:1;max-width:140px;display:flex;align-items:center;justify-content:center;gap:7px;padding:12px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;box-shadow:var(--shadow);transition:border-color .25s,color .25s}
+.soc:hover{border-color:var(--border-hi);color:var(--blue)}
+.legal{margin-bottom:30px}
+.legal-items{display:flex;flex-direction:column;gap:7px}
+.legal-item{background:var(--bg-card);border:1px solid var(--border);border-radius:11px;overflow:hidden;box-shadow:var(--shadow)}
+.legal-trigger{width:100%;padding:12px 15px;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;font-size:12px;font-weight:600;color:var(--slate);text-align:right;transition:background .2s}
+.legal-trigger:hover{background:rgba(2,132,199,.04)}
+body[data-lang="fr"] .legal-trigger,body[data-lang="en"] .legal-trigger{text-align:left}
+.chevron{font-size:10px;transition:transform .25s;color:var(--muted);flex-shrink:0;margin-right:4px}
+body[data-lang="fr"] .chevron,body[data-lang="en"] .chevron{margin-right:0;margin-left:4px}
+.legal-item.open .chevron{transform:rotate(180deg)}
+.legal-body{display:none;padding:0 15px 14px;font-size:11.5px;color:var(--muted);line-height:1.85}
+.legal-item.open .legal-body{display:block}
+.legal-body p{margin-bottom:8px}.legal-body p:last-child{margin-bottom:0}
+.legal-body strong{color:var(--slate);font-weight:600}
+.foot{text-align:center;font-size:10px;color:var(--muted);opacity:.4}
+/* lang section visibility */
+.sec-fr,.sec-en{display:none}
+body[data-lang="fr"] .sec-ar,body[data-lang="fr"] .sec-en{display:none}
+body[data-lang="fr"] .sec-fr{display:block}
+body[data-lang="en"] .sec-ar,body[data-lang="en"] .sec-fr{display:none}
+body[data-lang="en"] .sec-en{display:block}
+@media(min-width:640px){
+  .wrap{max-width:720px;padding:38px 24px 64px}
+  .cards{grid-template-columns:1fr 1fr;gap:13px}
+  .card{flex-direction:column;gap:11px;align-items:stretch}
+  .c-foot{flex-direction:column;align-items:stretch;gap:10px}
+  .btn{width:100%;justify-content:center}.soc{max-width:160px}
+}
+@media(min-width:1024px){
+  .wrap{max-width:1000px;padding:56px 40px 80px}
+  .avatar{width:90px;height:90px;font-size:34px}
+  .brand{font-size:27px}.tagline{font-size:14.5px;max-width:520px}
+  .cards{grid-template-columns:repeat(3,1fr);gap:16px}
+  .soc{max-width:190px;padding:14px;font-size:14px}
+}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
+/* ══ ADMIN ═════════════════════════════════════════════════════ */
+#adm-ov{display:none;position:fixed;inset:0;z-index:2000;flex-direction:row}
+#adm-ov.show{display:flex}
+#adm-pan{width:430px;max-width:100%;background:#fff;flex-shrink:0;display:flex;flex-direction:column;height:100%;box-shadow:2px 0 32px rgba(15,23,42,.14);direction:rtl;overflow:hidden;transform:translateX(-110%);transition:transform .32s cubic-bezier(.4,0,.2,1)}
+#adm-ov.show #adm-pan{transform:translateX(0)}
+#adm-prev{flex:1;overflow-y:auto;background:var(--bg);height:100%}
+@media(max-width:900px){#adm-ov{background:rgba(15,23,42,.5)}#adm-prev{display:none!important}#adm-pan{width:100%;max-width:100%}}
+#adm-login{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:40px 28px;gap:14px}
+.lg-ico{font-size:40px;margin-bottom:4px}.lg-title{font-size:18px;font-weight:700;color:#0F172A}
+.lg-sub{font-size:12px;color:#64748B;margin-bottom:8px}
+.lg-f{width:100%;display:flex;flex-direction:column;gap:5px}
+.lg-lbl{font-size:11px;font-weight:600;color:#475569}
+.lg-inp{width:100%;padding:10px 12px;border:1px solid #E2E8F0;border-radius:8px;font-family:inherit;font-size:13px;outline:none;transition:border-color .2s;direction:rtl}
+.lg-inp:focus{border-color:#0284C7}
+.lg-btn{width:100%;padding:11px;background:#0284C7;color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:4px;transition:background .2s}
+.lg-btn:hover{background:#0369A1}
+.lg-err{font-size:11.5px;color:#DC2626;text-align:center;display:none}
+.lg-err.on{display:block}
+#adm-main{display:none;flex-direction:column;flex:1;overflow:hidden}
+#adm-main.on{display:flex}
+.ah{padding:13px 16px;border-bottom:1px solid #E2E8F0;display:flex;align-items:center;justify-content:space-between;background:#F8FAFC;flex-shrink:0}
+.ah-t{font-size:14px;font-weight:700;color:#0F172A;display:flex;align-items:center;gap:6px}
+.sdot{width:7px;height:7px;border-radius:50%;background:#22C55E;opacity:0;transition:opacity .3s}
+.sdot.on{opacity:1}
+.ah-x{background:none;border:none;font-size:18px;cursor:pointer;color:#64748B;padding:2px 8px;border-radius:6px;line-height:1}
+.ah-x:hover{background:#F1F5F9;color:#0F172A}
+.atabs{display:flex;overflow-x:auto;border-bottom:1px solid #E2E8F0;background:#F8FAFC;flex-shrink:0;scrollbar-width:none}
+.atabs::-webkit-scrollbar{display:none}
+.atab{flex:0 0 auto;padding:10px 12px;border:none;background:none;font-family:inherit;font-size:11px;font-weight:600;color:#64748B;cursor:pointer;border-bottom:2.5px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+.atab.on{color:#0284C7;border-bottom-color:#0284C7}
+.abody{flex:1;overflow-y:auto;padding:16px}
+.af{margin-bottom:11px}
+.al{display:block;font-size:11px;font-weight:600;color:#475569;margin-bottom:5px}
+.ai,.ata{width:100%;padding:8px 11px;border:1px solid #E2E8F0;border-radius:8px;font-family:inherit;font-size:12px;outline:none;transition:border-color .2s;color:#0F172A;background:#fff;direction:rtl}
+.ai:focus,.ata:focus{border-color:#0284C7}
+.ata{resize:vertical;min-height:68px;line-height:1.6}
+.arow{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.asec{margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid #F1F5F9}
+.asec:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.asec-t{font-size:12px;font-weight:700;color:#334155;margin-bottom:10px}
+.ait{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;margin-bottom:8px;overflow:hidden}
+.ait-h{display:flex;align-items:center;gap:8px;padding:10px 12px;cursor:pointer;user-select:none}
+.ait-h:hover{background:#F1F5F9}
+.ait-ico{font-size:17px;min-width:26px;text-align:center}
+.ait-nm{flex:1;font-size:12.5px;font-weight:600;color:#0F172A;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ait-body{display:none;padding:12px;border-top:1px solid #E2E8F0;background:#fff}
+.ait.open .ait-body{display:block}
+.ait-ch{font-size:9px;color:#94A3B8;transition:transform .2s;flex-shrink:0}
+.ait.open .ait-ch{transform:rotate(180deg)}
+.adel{display:inline-flex;align-items:center;gap:4px;padding:5px 11px;background:none;border:1px solid #FCA5A5;border-radius:7px;color:#DC2626;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;margin-top:8px}
+.adel:hover{background:#FEF2F2}
+.aadd{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:10px;background:#F0F9FF;border:1px dashed #BAE6FD;border-radius:9px;color:#0284C7;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;margin-top:2px}
+.aadd:hover{background:#E0F2FE}
+.atgl-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;margin-top:4px}
+.atgl-lbl{font-size:12px;font-weight:600;color:#334155}
+.atgl{position:relative;width:38px;height:22px;flex-shrink:0}
+.atgl input{opacity:0;width:0;height:0;position:absolute}
+.atgl-s{position:absolute;inset:0;background:#CBD5E1;border-radius:999px;cursor:pointer;transition:background .2s}
+.atgl-s::before{content:'';position:absolute;width:16px;height:16px;border-radius:50%;background:#fff;top:3px;left:3px;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.atgl input:checked+.atgl-s{background:#0284C7}
+.atgl input:checked+.atgl-s::before{transform:translateX(16px)}
+.abr{display:flex;align-items:center;gap:6px;margin-bottom:7px}
+.abr-inp{flex:1;padding:7px 10px;border:1px solid #E2E8F0;border-radius:7px;font-family:inherit;font-size:12px;outline:none;direction:rtl}
+.abr-inp:focus{border-color:#0284C7}
+.abr-rm{background:none;border:none;color:#CBD5E1;cursor:pointer;font-size:15px;padding:3px 5px;border-radius:5px;transition:color .15s}
+.abr-rm:hover{background:#FEF2F2;color:#DC2626}
+.aftr{padding:12px 16px;border-top:1px solid #E2E8F0;display:flex;gap:8px;flex-shrink:0;background:#F8FAFC}
+.afbtn{flex:1;padding:10px;border:none;border-radius:9px;font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;transition:background .2s}
+.afbtn-exp{background:#0284C7;color:#fff}.afbtn-exp:hover{background:#0369A1}
+.afbtn-pre{background:#F1F5F9;color:#334155}.afbtn-pre:hover{background:#E2E8F0}
+.smsg{font-size:11.5px;margin-top:8px;text-align:center;display:none;padding:6px 10px;border-radius:7px}
+.smsg.ok{display:block;background:#F0FDF4;color:#15803D}
+.smsg.err{display:block;background:#FEF2F2;color:#DC2626}
+.lang-sep{font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.1em;margin:10px 0 6px;padding-top:10px;border-top:1px solid #F1F5F9}
+</style>
+</head>
+<body data-lang="ar">
+
+<!-- ═══ LANDING PAGE ═══ -->
+<div class="wrap">
+  <div class="lang-row">
+    <div class="pill">
+      <button class="lang-btn on" onclick="setLang('ar')">العربية</button>
+      <button class="lang-btn"    onclick="setLang('fr')">Français</button>
+      <button class="lang-btn"    onclick="setLang('en')">English</button>
+    </div>
+  </div>
+  <div class="sec-ar" id="sec-ar"></div>
+  <div class="sec-fr" id="sec-fr"></div>
+  <div class="sec-en" id="sec-en"></div>
+</div>
+
+<!-- ═══ ADMIN ═══ -->
+<div id="adm-ov">
+  <div id="adm-pan">
+    <div id="adm-login">
+      <div class="lg-ico">🛠️</div>
+      <div class="lg-title">لوحة التحكم</div>
+      <div class="lg-sub">أنس — مسافر</div>
+      <div class="lg-f"><label class="lg-lbl">اسم المستخدم</label><input class="lg-inp" id="au" type="text" placeholder="admin" autocomplete="username"></div>
+      <div class="lg-f"><label class="lg-lbl">كلمة المرور</label><input class="lg-inp" id="ap" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <button class="lg-btn" onclick="doLogin()">دخول →</button>
+      <div class="lg-err" id="a-err">اسم المستخدم أو كلمة المرور غير صحيحة</div>
+    </div>
+    <div id="adm-main">
+      <div class="ah">
+        <div class="ah-t">⚙️ لوحة التحكم <span class="sdot" id="sdot"></span></div>
+        <button class="ah-x" onclick="closeAdmin()">✕</button>
+      </div>
+      <div class="atabs">
+        <button class="atab on" onclick="tab('brand')">🏠 البراند</button>
+        <button class="atab"    onclick="tab('svs')">📦 الخدمات</button>
+        <button class="atab"    onclick="tab('soc')">🔗 التواصل</button>
+        <button class="atab"    onclick="tab('leg')">⚖️ القانونية</button>
+        <button class="atab"    onclick="tab('sec')">🔒 الأمان</button>
+      </div>
+      <div class="abody" id="abody"></div>
+      <div class="aftr">
+        <button class="afbtn afbtn-pre" onclick="togglePrev()">👁️ معاينة</button>
+        <button class="afbtn afbtn-exp" onclick="exportFile()">📥 تصدير الملف</button>
+      </div>
+    </div>
+  </div>
+  <div id="adm-prev">
+    <div class="wrap" style="padding-top:16px">
+      <div class="lang-row">
+        <div class="pill">
+          <button class="lang-btn on" onclick="pLang('ar')">العربية</button>
+          <button class="lang-btn"    onclick="pLang('fr')">Français</button>
+          <button class="lang-btn"    onclick="pLang('en')">English</button>
+        </div>
+      </div>
+      <div id="pv-ar"></div>
+      <div id="pv-fr" style="display:none"></div>
+      <div id="pv-en" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════
+   ==CFG_EXPORT_START==
+   ════════════════════════════════════════════════════ */
+const DEFAULT_CFG = {
+  brandAr:"أنس — مسافر",brandFr:"Anas — Voyageur",brandEn:"Anas — Traveler",
+  taglineAr:"انسان حالم ومتفائل ويحب السفر\nأقدم استشارات وخطط سياحية وحجوزات\nوتقديم على الفيز الإلكترونية",
+  taglineFr:"Un rêveur optimiste passionné de voyage\nConsultations, plans de voyage et réservations\nDemandes de visa électronique",
+  taglineEn:"A dreamer who loves to travel\nTravel consultations, itineraries & bookings\nOnline visa applications",
+  avatar:"🧳",
+  badgesAr:["✈️ شرق آسيا","🎒 رحلة باك باكنق","💍 رحلة شهر العسل"],
+  badgesFr:["✈️ Asie du Sud-Est","🎒 Voyage Backpacking","💍 Voyage de Noces"],
+  badgesEn:["✈️ Southeast Asia","🎒 Backpacking Trip","💍 Honeymoon Trips"],
+  socials:[
+    {icon:"🎵",name:"TikTok",url:"#"},
+    {icon:"📸",name:"Instagram",url:"#"}
+  ],
+  services:[
+    {icon:"📖",
+     nameAr:"دليل شرق آسيا",nameFr:"Guide Asie du Sud-Est",nameEn:"Southeast Asia Guide",
+     descAr:"دليلك المتكامل للسفر الى دول شرق آسيا",
+     descFr:"Votre guide complet pour voyager en Asie du Sud-Est",
+     descEn:"Your complete guide to traveling Southeast Asia",
+     priceSAR:50,priceUSD:13,
+     prefixAr:"",prefixFr:"",prefixEn:"",
+     noteAr:"",noteFr:"",noteEn:"",
+     btnAr:"احصل على الدليل",btnFr:"Obtenir le guide",btnEn:"Get the Guide",
+     link:"#",featured:true,
+     starTagAr:"⭐ الأكثر طلباً",starTagFr:"⭐ Le plus demandé",starTagEn:"⭐ Most Popular"},
+    {icon:"💰",
+     nameAr:"دليلك للسفر الاقتصادي",nameFr:"Guide Voyage Économique",nameEn:"Budget Travel Guide",
+     descAr:"دليل شامل مبني على تجربتي الشخصية وكل اللي تحتاج عن تسافر بطريقة اقتصادية ونصايح ما تلقاها عند غيري",
+     descFr:"Un guide complet basé sur mon expérience pour voyager économiquement",
+     descEn:"A comprehensive guide based on my personal experience — everything you need to travel on a budget, with tips you won't find elsewhere",
+     priceSAR:60,priceUSD:16,prefixAr:"",prefixFr:"",prefixEn:"",noteAr:"",noteFr:"",noteEn:"",
+     btnAr:"احصل على الدليل",btnFr:"Obtenir le guide",btnEn:"Get the Guide",
+     link:"#",featured:false,starTagAr:"",starTagFr:"",starTagEn:""},
+    {icon:"💬",
+     nameAr:"استشارة سفر — ٣٠ دقيقة",nameFr:"Consultation voyage — 30 min",nameEn:"Travel Consultation — 30 min",
+     descAr:"اسأل كل أسئلتك وخطط رحلتك مع شخص عاش التجربة فعلاً",
+     descFr:"Posez toutes vos questions avec quelqu'un qui a vécu l'expérience",
+     descEn:"Ask all your questions and plan your trip with someone who's been there",
+     priceSAR:109,priceUSD:29,prefixAr:"",prefixFr:"",prefixEn:"",noteAr:"",noteFr:"",noteEn:"",
+     btnAr:"احجز الاستشارة",btnFr:"Réserver",btnEn:"Book Now",
+     link:"#",featured:false,starTagAr:"",starTagFr:"",starTagEn:""},
+    {icon:"🗓️",
+     nameAr:"خطة سفر شهر كامل",nameFr:"Itinéraire 1 mois complet",nameEn:"1-Month Itinerary",
+     descAr:"خطة مخصصة من البداية للنهاية — وجهات، فنادق، ميزانية يومية",
+     descFr:"Un plan personnalisé du début à la fin",
+     descEn:"A personalized plan from start to finish — destinations, hotels, daily budget",
+     priceSAR:370,priceUSD:99,prefixAr:"من ",prefixFr:"À partir de ",prefixEn:"From ",noteAr:"",noteFr:"",noteEn:"",
+     btnAr:"اطلب خطتك",btnFr:"Commander",btnEn:"Order Your Plan",
+     link:"#",featured:false,starTagAr:"",starTagFr:"",starTagEn:""},
+    {icon:"🌏",
+     nameAr:"خطة سفر ٣ شهور",nameFr:"Itinéraire 3 mois",nameEn:"3-Month Itinerary",
+     descAr:"تخطط ترحال طويل؟ خطة كاملة من أول يوم لآخر يوم",
+     descFr:"Long voyage ? Un plan complet du premier au dernier jour",
+     descEn:"Planning a long trip? A complete plan from day one to the last day",
+     priceSAR:560,priceUSD:149,prefixAr:"من ",prefixFr:"À partir de ",prefixEn:"From ",noteAr:"",noteFr:"",noteEn:"",
+     btnAr:"اطلب خطتك",btnFr:"Commander",btnEn:"Order Your Plan",
+     link:"#",featured:false,starTagAr:"",starTagFr:"",starTagEn:""},
+    {icon:"📋",
+     nameAr:"التقديم على تأشيرة أونلاين",nameFr:"Demande de Visa en Ligne",nameEn:"Online Visa Application",
+     descAr:"أتولى تقديم طلب تأشيرتك السياحية الإلكترونية بشكل صحيح — أنت تجهّز الأوراق المطلوبة وأنا أتكفل بالتقديم",
+     descFr:"Je soumets votre demande de visa touristique en ligne — vous préparez les documents, je m'occupe du dépôt",
+     descEn:"I'll submit your tourist e-visa application — you prepare the required documents, I handle the submission",
+     priceSAR:1000,priceUSD:267,prefixAr:"",prefixFr:"",prefixEn:"",
+     noteAr:"بدون رسوم التأشيرة",noteFr:"Frais de visa non inclus",noteEn:"Excluding visa fees",
+     btnAr:"اطلب الخدمة",btnFr:"Demander le service",btnEn:"Request Service",
+     link:"#",featured:false,starTagAr:"",starTagFr:"",starTagEn:""}
+  ],
+  legal:{
+    ar:[
+      {title:"شروط الاستخدام",body:"<p>باستخدامك هذا الموقع أو إتمامك أي عملية شراء، فإنك تُقرّ بموافقتك الكاملة على هذه الشروط. جميع الخدمات ذات طابع <strong>استشاري ومعلوماتي</strong> حصراً. في ما يخص <strong>خدمة التقديم على التأشيرات:</strong> يتولى مقدم الخدمة التقديم إلكترونياً فحسب؛ مسؤولية تجهيز الوثائق وصحتها تقع على العميل وحده. لا يتحمل مقدم الخدمة أي مسؤولية عن نتيجة الطلب.</p>"},
+      {title:"سياسة الاسترداد",body:"<p><strong>جميع المبالغ المدفوعة نهائية وغير قابلة للاسترداد</strong> بعد إتمام الشراء دون استثناء. للمنتجات الرقمية: تُرسل فور الدفع ولا يُقبل الاسترداد. للخدمات: لا يُقبل الاسترداد بعد البدء في التنفيذ.</p>"},
+      {title:"سياسة الخصوصية",body:"<p>لا يخزّن هذا الموقع أي بيانات شخصية. عمليات الدفع تتم عبر منصات طرف ثالث آمنة. لا تُشارَك أي معلومات مع أطراف خارجية.</p>"}
+    ],
+    fr:[
+      {title:"Conditions d'utilisation",body:"<p>En utilisant ce site ou en effectuant un achat, vous acceptez les présentes conditions. Tous les services sont de nature <strong>consultative et informative</strong>. Concernant le visa : le prestataire dépose uniquement le dossier ; la préparation des documents relève du client. Aucune responsabilité n'est assumée quant au résultat.</p>"},
+      {title:"Politique de remboursement",body:"<p><strong>Tous les paiements sont définitifs et non remboursables</strong>, sans exception. Produits numériques : livrés immédiatement, aucun remboursement. Services : aucun remboursement après le début de la prestation.</p>"},
+      {title:"Politique de confidentialité",body:"<p>Ce site ne stocke aucune donnée personnelle. Les paiements sont traités par des plateformes tierces sécurisées. Aucune information n'est partagée avec des tiers.</p>"}
+    ],
+    en:[
+      {title:"Terms of Service",body:"<p>By using this website or completing any purchase, you agree to these terms. All services are exclusively <strong>advisory and informational</strong>. Regarding visa applications: the service provider handles the electronic submission only; the client is solely responsible for preparing and ensuring the accuracy of required documents. The service provider bears no legal or financial responsibility for the outcome of any application.</p>"},
+      {title:"Refund Policy",body:"<p><strong>All payments are final and non-refundable</strong> after purchase, without exception. Digital products (guides): delivered immediately after payment, no refunds accepted. Services (consultations, travel plans, visa applications): no refunds after work has commenced.</p>"},
+      {title:"Privacy Policy",body:"<p>This website does not store any personal data on its servers. Payments are processed through secure third-party platforms. No information is shared with third parties under any circumstances.</p>"}
+    ]
+  }
+};
+const DEFAULT_AUTH = {
+  u:"8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+  p:"ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270"
+};
+/* ==CFG_EXPORT_END== */
+
+/* ════ STATE ════ */
+let D,AUTH,ORIG='';
+async function initState(){
+  D=JSON.parse(localStorage.getItem('anas_d')||JSON.stringify(DEFAULT_CFG));
+  AUTH=JSON.parse(localStorage.getItem('anas_a')||JSON.stringify(DEFAULT_AUTH));
+}
+
+/* ════ SHA-256 ════ */
+async function sha256(s){
+  const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
+  return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+
+/* ════ HELPERS ════ */
+const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function flash(){const d=document.getElementById('sdot');d.classList.add('on');setTimeout(()=>d.classList.remove('on'),1400)}
+function save(){localStorage.setItem('anas_d',JSON.stringify(D));flash()}
+function redraw(){save();renderPage();renderPrev()}
+
+/* ════ RENDERER ════ */
+function buildSec(lang){
+  const ar=lang==='ar',en=lang==='en';
+  const T=(a,f,e)=>ar?a:en?e:f;
+  const cards=D.services.map(s=>{
+    const nm=T(s.nameAr,s.nameFr,s.nameEn),ds=T(s.descAr,s.descFr,s.descEn),
+          bt=T(s.btnAr,s.btnFr,s.btnEn),pf=T(s.prefixAr,s.prefixFr,s.prefixEn)||'',
+          nt=T(s.noteAr,s.noteFr,s.noteEn),st=s.featured?T(s.starTagAr,s.starTagFr,s.starTagEn):'';
+    const live=s.link&&s.link!=='#';
+    const btn=live?`<a href="${esc(s.link)}" target="_blank" rel="noopener" class="btn">${esc(bt)} →</a>`
+                  :`<button class="btn soon" onclick="showSoon(this,'${esc(bt)}')">${esc(bt)}</button>`;
+    return`<div class="card${s.featured?' star':''}"><div class="ico">${s.icon}</div><div class="info">${st?`<div class="star-tag">${esc(st)}</div>`:''}<div class="c-name">${esc(nm)}</div><div class="c-desc">${esc(ds)}</div><div class="c-foot"><div class="price"><span class="price-main">${esc(pf+s.priceSAR+' SAR')}</span><span class="price-sub">${esc(pf+'$'+s.priceUSD)}</span>${nt?`<span class="price-note">* ${esc(nt)}</span>`:''}</div>${btn}</div></div></div>`;
+  }).join('');
+  const li=(D.legal[lang]||[]).map((x,i)=>`<div class="legal-item" id="li${lang}${i}"><button class="legal-trigger" onclick="toggleLegal('li${lang}${i}')"><span>${esc(x.title)}</span><span class="chevron">▼</span></button><div class="legal-body">${x.body}</div></div>`).join('');
+  const soc=(D.socials||[]).map(s=>`<a href="${esc(s.url)}" target="_blank" class="soc">${s.icon} ${esc(s.name)}</a>`).join('');
+  const br=T(D.brandAr,D.brandFr,D.brandEn),tl=T(D.taglineAr,D.taglineFr,D.taglineEn),bg=T(D.badgesAr,D.badgesFr,D.badgesEn);
+  const svcLbl=T('خدماتي','Mes Services','My Services'),socLbl=T('تابعني','Me suivre','Follow Me');
+  const legLbl=T('الشروط والأحكام','Mentions légales','Legal');
+  const footTxt=T(`${D.brandAr} · جميع الحقوق محفوظة`,`${D.brandFr} · Tous droits réservés`,`${D.brandEn} · All rights reserved`);
+  const av=(D.avatar||'').startsWith('http')||(D.avatar||'').startsWith('/')?`<img src="${esc(D.avatar)}" alt="">`:`<span>${D.avatar||'🧳'}</span>`;
+  return`<div class="hero"><div class="avatar">${av}</div><h1 class="brand">${esc(br)}</h1><p class="tagline">${esc(tl)}</p><div class="badges">${(bg||[]).map(b=>`<span class="badge">${esc(b)}</span>`).join('')}</div></div><div class="label">${svcLbl}</div><div class="cards">${cards}</div><div class="socials"><div class="label">${socLbl}</div><div class="soc-row">${soc}</div></div><div class="legal"><div class="label">${legLbl}</div><div class="legal-items">${li}</div></div><p class="foot">${esc(footTxt)}</p>`;
+}
+function renderPage(){['ar','fr','en'].forEach(l=>document.getElementById('sec-'+l).innerHTML=buildSec(l))}
+function renderPrev(){['ar','fr','en'].forEach(l=>document.getElementById('pv-'+l).innerHTML=buildSec(l))}
+
+/* ════ LANG ════ */
+const lbBtns=document.querySelectorAll('.wrap>.lang-row .lang-btn');
+function setLang(l){
+  document.body.setAttribute('data-lang',l);
+  document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';
+  lbBtns.forEach((b,i)=>b.classList.toggle('on',['ar','fr','en'][i]===l));
+}
+function pLang(l){
+  ['ar','fr','en'].forEach(x=>{document.getElementById('pv-'+x).style.display=x===l?'':'none'});
+  document.querySelectorAll('#adm-prev .lang-btn').forEach((b,i)=>b.classList.toggle('on',['ar','fr','en'][i]===l));
+}
+function toggleLegal(id){document.getElementById(id)?.classList.toggle('open')}
+function showSoon(btn,label){
+  const l=document.body.getAttribute('data-lang');
+  btn.textContent=l==='fr'?'Bientôt ✨':l==='en'?'Coming Soon ✨':'قريباً ✨';
+  setTimeout(()=>btn.textContent=label,2500);
+}
+
+/* ════ AUTH ════ */
+async function doLogin(){
+  const u=document.getElementById('au').value.trim(),p=document.getElementById('ap').value;
+  if(!u||!p){document.getElementById('a-err').classList.add('on');return}
+  if(await sha256(u)===AUTH.u&&await sha256(p)===AUTH.p){
+    document.getElementById('adm-login').style.display='none';
+    document.getElementById('adm-main').classList.add('on');
+    tab('brand');renderPrev();
+  }else document.getElementById('a-err').classList.add('on');
+}
+function openAdmin(){
+  document.getElementById('adm-ov').classList.add('show');
+  document.getElementById('adm-login').style.display='flex';
+  document.getElementById('adm-main').classList.remove('on');
+  ['au','ap'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('a-err').classList.remove('on');
+}
+function closeAdmin(){document.getElementById('adm-ov').classList.remove('show')}
+
+/* ════ TABS ════ */
+function tab(t){
+  ['brand','svs','soc','leg','sec'].forEach((n,i)=>document.querySelectorAll('.atab')[i].classList.toggle('on',n===t));
+  document.getElementById('abody').innerHTML=
+    t==='brand'?tBrand():t==='svs'?tServices():t==='soc'?tSocial():t==='leg'?tLegal():tSecurity();
+}
+function togglePrev(){
+  const pv=document.getElementById('adm-prev'),pa=document.getElementById('adm-pan');
+  if(pv.style.display==='block'){pv.style.display='';pa.style.display=''}
+  else{pv.style.display='block';pa.style.display='none';renderPrev()}
+}
+
+/* ════ TAB: BRAND ════ */
+function badgeRows(arr,key){
+  return(arr||[]).map((b,i)=>`<div class="abr"><input class="abr-inp" value="${esc(b)}" oninput="D.${key}[${i}]=this.value;redraw()"><button class="abr-rm" onclick="D.${key}.splice(${i},1);tab('brand');redraw()">✕</button></div>`).join('');
+}
+function tBrand(){return`
+  <div class="asec">
+    <div class="asec-t">🖼️ الصورة / الأيقونة</div>
+    <div class="af"><label class="al">إيموجي أو رابط صورة URL</label><input class="ai" value="${esc(D.avatar||'🧳')}" placeholder="🧳 أو https://..." oninput="D.avatar=this.value;redraw()"></div>
+  </div>
+  <div class="asec">
+    <div class="asec-t">✏️ اسم البراند</div>
+    <div class="af"><label class="al">🇸🇦 عربي</label><input class="ai" value="${esc(D.brandAr)}" oninput="D.brandAr=this.value;redraw()"></div>
+    <div class="af"><label class="al">🇫🇷 Français</label><input class="ai" value="${esc(D.brandFr)}" oninput="D.brandFr=this.value;redraw()"></div>
+    <div class="af"><label class="al">🇬🇧 English</label><input class="ai" value="${esc(D.brandEn)}" oninput="D.brandEn=this.value;redraw()"></div>
+  </div>
+  <div class="asec">
+    <div class="asec-t">📝 البايو</div>
+    <div class="af"><label class="al">🇸🇦 عربي</label><textarea class="ata" oninput="D.taglineAr=this.value;redraw()">${esc(D.taglineAr)}</textarea></div>
+    <div class="af"><label class="al">🇫🇷 Français</label><textarea class="ata" oninput="D.taglineFr=this.value;redraw()">${esc(D.taglineFr)}</textarea></div>
+    <div class="af"><label class="al">🇬🇧 English</label><textarea class="ata" oninput="D.taglineEn=this.value;redraw()">${esc(D.taglineEn)}</textarea></div>
+  </div>
+  <div class="asec">
+    <div class="asec-t">🏷️ الشارات — عربي</div>
+    ${badgeRows(D.badgesAr,'badgesAr')}<button class="aadd" onclick="D.badgesAr.push('🏷️ جديد');tab('brand');redraw()">+ إضافة شارة</button>
+  </div>
+  <div class="asec">
+    <div class="asec-t">🏷️ Badges — Français</div>
+    ${badgeRows(D.badgesFr,'badgesFr')}<button class="aadd" onclick="D.badgesFr.push('🏷️ Nouveau');tab('brand');redraw()">+ Ajouter un badge</button>
+  </div>
+  <div class="asec">
+    <div class="asec-t">🏷️ Badges — English</div>
+    ${badgeRows(D.badgesEn,'badgesEn')}<button class="aadd" onclick="D.badgesEn.push('🏷️ New');tab('brand');redraw()">+ Add Badge</button>
+  </div>`;}
+
+/* ════ TAB: SERVICES ════ */
+function tServices(){
+  const items=D.services.map((s,i)=>`
+  <div class="ait" id="asv${i}">
+    <div class="ait-h" onclick="document.getElementById('asv${i}').classList.toggle('open')">
+      <span class="ait-ico">${s.icon}</span><span class="ait-nm">${esc(s.nameAr)}</span><span class="ait-ch">▼</span>
+    </div>
+    <div class="ait-body">
+      <div class="arow">
+        <div class="af"><label class="al">أيقونة</label><input class="ai" value="${esc(s.icon)}" oninput="D.services[${i}].icon=this.value;redraw()"></div>
+        <div class="af"><label class="al">رابط الدفع</label><input class="ai" value="${esc(s.link)}" placeholder="https://..." oninput="D.services[${i}].link=this.value;redraw()"></div>
+      </div>
+      <div class="lang-sep">🇸🇦 عربي</div>
+      <div class="af"><label class="al">الاسم</label><input class="ai" value="${esc(s.nameAr)}" oninput="D.services[${i}].nameAr=this.value;redraw()"></div>
+      <div class="af"><label class="al">الوصف</label><textarea class="ata" oninput="D.services[${i}].descAr=this.value;redraw()">${esc(s.descAr)}</textarea></div>
+      <div class="arow">
+        <div class="af"><label class="al">نص الزر</label><input class="ai" value="${esc(s.btnAr)}" oninput="D.services[${i}].btnAr=this.value;redraw()"></div>
+        <div class="af"><label class="al">بادئة السعر</label><input class="ai" value="${esc(s.prefixAr)}" placeholder="من " oninput="D.services[${i}].prefixAr=this.value;redraw()"></div>
+      </div>
+      <div class="af"><label class="al">ملاحظة السعر</label><input class="ai" value="${esc(s.noteAr)}" oninput="D.services[${i}].noteAr=this.value;redraw()"></div>
+      <div class="lang-sep">🇫🇷 Français</div>
+      <div class="af"><label class="al">Nom</label><input class="ai" value="${esc(s.nameFr)}" oninput="D.services[${i}].nameFr=this.value;redraw()"></div>
+      <div class="af"><label class="al">Description</label><textarea class="ata" oninput="D.services[${i}].descFr=this.value;redraw()">${esc(s.descFr)}</textarea></div>
+      <div class="arow">
+        <div class="af"><label class="al">Bouton</label><input class="ai" value="${esc(s.btnFr)}" oninput="D.services[${i}].btnFr=this.value;redraw()"></div>
+        <div class="af"><label class="al">Préfixe prix</label><input class="ai" value="${esc(s.prefixFr)}" oninput="D.services[${i}].prefixFr=this.value;redraw()"></div>
+      </div>
+      <div class="af"><label class="al">Note prix</label><input class="ai" value="${esc(s.noteFr)}" oninput="D.services[${i}].noteFr=this.value;redraw()"></div>
+      <div class="lang-sep">🇬🇧 English</div>
+      <div class="af"><label class="al">Name</label><input class="ai" value="${esc(s.nameEn)}" oninput="D.services[${i}].nameEn=this.value;redraw()"></div>
+      <div class="af"><label class="al">Description</label><textarea class="ata" oninput="D.services[${i}].descEn=this.value;redraw()">${esc(s.descEn)}</textarea></div>
+      <div class="arow">
+        <div class="af"><label class="al">Button text</label><input class="ai" value="${esc(s.btnEn)}" oninput="D.services[${i}].btnEn=this.value;redraw()"></div>
+        <div class="af"><label class="al">Price prefix</label><input class="ai" value="${esc(s.prefixEn)}" placeholder="From " oninput="D.services[${i}].prefixEn=this.value;redraw()"></div>
+      </div>
+      <div class="af"><label class="al">Price note</label><input class="ai" value="${esc(s.noteEn)}" oninput="D.services[${i}].noteEn=this.value;redraw()"></div>
+      <div class="lang-sep">الأسعار / Prices</div>
+      <div class="arow">
+        <div class="af"><label class="al">SAR ر.س</label><input class="ai" type="number" value="${s.priceSAR}" oninput="D.services[${i}].priceSAR=+this.value;redraw()"></div>
+        <div class="af"><label class="al">USD $</label><input class="ai" type="number" value="${s.priceUSD}" oninput="D.services[${i}].priceUSD=+this.value;redraw()"></div>
+      </div>
+      <div class="atgl-row">
+        <span class="atgl-lbl">⭐ خدمة مميزة</span>
+        <label class="atgl"><input type="checkbox" ${s.featured?'checked':''} onchange="D.services[${i}].featured=this.checked;tab('svs');redraw()"><span class="atgl-s"></span></label>
+      </div>
+      ${s.featured?`<div class="arow"><div class="af"><label class="al">نص المميز — عربي</label><input class="ai" value="${esc(s.starTagAr)}" oninput="D.services[${i}].starTagAr=this.value;redraw()"></div><div class="af"><label class="al">Tag — Français</label><input class="ai" value="${esc(s.starTagFr)}" oninput="D.services[${i}].starTagFr=this.value;redraw()"></div></div><div class="af"><label class="al">Tag — English</label><input class="ai" value="${esc(s.starTagEn)}" oninput="D.services[${i}].starTagEn=this.value;redraw()"></div>`:''}
+      <button class="adel" onclick="if(confirm('حذف هذه الخدمة؟')){D.services.splice(${i},1);tab('svs');redraw()}">🗑️ حذف الخدمة</button>
+    </div>
+  </div>`).join('');
+  return`${items}<button class="aadd" onclick="addSvc()">+ إضافة خدمة جديدة</button>`;
+}
+function addSvc(){
+  D.services.push({icon:'✨',nameAr:'خدمة جديدة',nameFr:'Nouveau service',nameEn:'New Service',descAr:'الوصف',descFr:'Description',descEn:'Description',priceSAR:0,priceUSD:0,prefixAr:'',prefixFr:'',prefixEn:'',noteAr:'',noteFr:'',noteEn:'',btnAr:'اطلب',btnFr:'Commander',btnEn:'Order',link:'#',featured:false,starTagAr:'',starTagFr:'',starTagEn:''});
+  tab('svs');redraw();
+  setTimeout(()=>{const all=document.querySelectorAll('.ait');all[all.length-1]?.classList.add('open')},60);
+}
+
+/* ════ TAB: SOCIAL ════ */
+function tSocial(){
+  const items=(D.socials||[]).map((s,i)=>`
+  <div class="ait" id="asc${i}">
+    <div class="ait-h" onclick="document.getElementById('asc${i}').classList.toggle('open')">
+      <span class="ait-ico">${s.icon}</span><span class="ait-nm">${esc(s.name)}</span><span class="ait-ch">▼</span>
+    </div>
+    <div class="ait-body">
+      <div class="arow">
+        <div class="af"><label class="al">أيقونة</label><input class="ai" value="${esc(s.icon)}" oninput="D.socials[${i}].icon=this.value;redraw()"></div>
+        <div class="af"><label class="al">اسم المنصة</label><input class="ai" value="${esc(s.name)}" oninput="D.socials[${i}].name=this.value;redraw()"></div>
+      </div>
+      <div class="af"><label class="al">الرابط</label><input class="ai" value="${esc(s.url)}" placeholder="https://..." oninput="D.socials[${i}].url=this.value;redraw()"></div>
+      <button class="adel" onclick="if(confirm('حذف؟')){D.socials.splice(${i},1);tab('soc');redraw()}">🗑️ حذف</button>
+    </div>
+  </div>`).join('');
+  return`${items}<button class="aadd" onclick="D.socials.push({icon:'🔗',name:'New Platform',url:'#'});tab('soc');redraw()">+ إضافة منصة تواصل</button>`;
+}
+
+/* ════ TAB: LEGAL ════ */
+function tLegal(){
+  const mkL=(lk,lbl)=>{
+    const it=(D.legal[lk]||[]).map((x,i)=>`
+    <div class="ait" id="alg${lk}${i}">
+      <div class="ait-h" onclick="document.getElementById('alg${lk}${i}').classList.toggle('open')">
+        <span class="ait-ico">📄</span><span class="ait-nm">${esc(x.title)}</span><span class="ait-ch">▼</span>
+      </div>
+      <div class="ait-body">
+        <div class="af"><label class="al">العنوان / Title</label><input class="ai" value="${esc(x.title)}" oninput="D.legal['${lk}'][${i}].title=this.value;redraw()"></div>
+        <div class="af"><label class="al">المحتوى / Content (HTML)</label><textarea class="ata" style="min-height:90px" oninput="D.legal['${lk}'][${i}].body=this.value;redraw()">${esc(x.body)}</textarea></div>
+        <button class="adel" onclick="if(confirm('حذف؟')){D.legal['${lk}'].splice(${i},1);tab('leg');redraw()}">🗑️ حذف</button>
+      </div>
+    </div>`).join('');
+    return`<div class="asec"><div class="asec-t">${lbl}</div>${it}<button class="aadd" onclick="D.legal['${lk}'].push({title:'New Section',body:'<p>Content here</p>'});tab('leg');redraw()">+ إضافة قسم</button></div>`;
+  };
+  return mkL('ar','🇸🇦 عربي')+mkL('fr','🇫🇷 Français')+mkL('en','🇬🇧 English');
+}
+
+/* ════ TAB: SECURITY ════ */
+function tSecurity(){return`
+  <div class="asec">
+    <div class="asec-t">🔒 تغيير بيانات الدخول</div>
+    <p style="font-size:11px;color:#64748B;line-height:1.7;margin-bottom:14px">بعد التغيير اضغط <strong>تصدير الملف</strong> لحفظ البيانات الجديدة.</p>
+    <div class="af"><label class="al">اسم المستخدم الجديد</label><input class="ai" id="nu" type="text" autocomplete="new-password"></div>
+    <div class="af"><label class="al">كلمة المرور الجديدة</label><input class="ai" id="np" type="password" autocomplete="new-password"></div>
+    <div class="af"><label class="al">تأكيد كلمة المرور</label><input class="ai" id="np2" type="password" autocomplete="new-password"></div>
+    <button class="lg-btn" style="border-radius:9px;margin-top:4px" onclick="saveCreds()">💾 حفظ</button>
+    <div class="smsg" id="smsg"></div>
+  </div>`;}
+async function saveCreds(){
+  const u=document.getElementById('nu').value.trim(),p=document.getElementById('np').value,p2=document.getElementById('np2').value,m=document.getElementById('smsg');
+  if(!u||!p){m.className='smsg err';m.textContent='يرجى ملء جميع الحقول';return}
+  if(p!==p2){m.className='smsg err';m.textContent='كلمتا المرور غير متطابقتين';return}
+  AUTH.u=await sha256(u);AUTH.p=await sha256(p);
+  localStorage.setItem('anas_a',JSON.stringify(AUTH));
+  m.className='smsg ok';m.textContent='✅ تم — اضغط تصدير الملف';
+}
+
+/* ════ EXPORT ════ */
+async function exportFile(){
+  if(!ORIG){alert('انتظر لحظة وأعد المحاولة');return}
+  const rep=`/* ==CFG_EXPORT_START== */
+const DEFAULT_CFG = {
+  "brandAr": "أنس — مسافر",
+  "brandFr": "Anas — Voyageur",
+  "brandEn": "Anas — Traveler",
+  "taglineAr": "انسان حالم ومتفائل ويحب السفر\nأقدم استشارات وخطط سياحية وحجوزات\nوتقديم على الفيز الإلكترونية",
+  "taglineFr": "Un rêveur optimiste passionné de voyage\nConsultations, plans de voyage et réservations\nDemandes de visa électronique",
+  "taglineEn": "A dreamer who loves to travel\nTravel consultations, itineraries & bookings\nOnline visa applications",
+  "avatar": "🧳",
+  "badgesAr": [
+    "✈️ شرق آسيا",
+    "🎒 رحلة باك باكنق",
+    "💍 رحلة شهر العسل"
+  ],
+  "badgesFr": [
+    "✈️ Asie du Sud-Est",
+    "🎒 Voyage Backpacking",
+    "💍 Voyage de Noces"
+  ],
+  "badgesEn": [
+    "✈️ Southeast Asia",
+    "🎒 Backpacking Trip",
+    "💍 Honeymoon Trips"
+  ],
+  "socials": [
+    {
+      "icon": "🎵",
+      "name": "TikTok",
+      "url": "#"
+    },
+    {
+      "icon": "📸",
+      "name": "Instagram",
+      "url": "#"
+    }
+  ],
+  "services": [
+    {
+      "icon": "📖",
+      "nameAr": "دليل شرق آسيا",
+      "nameFr": "Guide Asie du Sud-Est",
+      "nameEn": "Southeast Asia Guide",
+      "descAr": "دليلك المتكامل للسفر الى دول شرق آسيا",
+      "descFr": "Votre guide complet pour voyager en Asie du Sud-Est",
+      "descEn": "Your complete guide to traveling Southeast Asia",
+      "priceSAR": 50,
+      "priceUSD": 13,
+      "prefixAr": "",
+      "prefixFr": "",
+      "prefixEn": "",
+      "noteAr": "",
+      "noteFr": "",
+      "noteEn": "",
+      "btnAr": "احصل على الدليل",
+      "btnFr": "Obtenir le guide",
+      "btnEn": "Get the Guide",
+      "link": "#",
+      "featured": true,
+      "starTagAr": "⭐ الأكثر طلباً",
+      "starTagFr": "⭐ Le plus demandé",
+      "starTagEn": "⭐ Most Popular"
+    },
+    {
+      "icon": "💰",
+      "nameAr": "دليلك للسفر الاقتصادي",
+      "nameFr": "Guide Voyage Économique",
+      "nameEn": "Budget Travel Guide",
+      "descAr": "دليل شامل مبني على تجربتي الشخصية وكل اللي تحتاج عن تسافر بطريقة اقتصادية ونصايح ما تلقاها عند غيري",
+      "descFr": "Un guide complet basé sur mon expérience pour voyager économiquement",
+      "descEn": "A comprehensive guide based on my personal experience — everything you need to travel on a budget, with tips you won't find elsewhere",
+      "priceSAR": 60,
+      "priceUSD": 16,
+      "prefixAr": "",
+      "prefixFr": "",
+      "prefixEn": "",
+      "noteAr": "",
+      "noteFr": "",
+      "noteEn": "",
+      "btnAr": "احصل على الدليل",
+      "btnFr": "Obtenir le guide",
+      "btnEn": "Get the Guide",
+      "link": "#",
+      "featured": false,
+      "starTagAr": "",
+      "starTagFr": "",
+      "starTagEn": ""
+    },
+    {
+      "icon": "💬",
+      "nameAr": "استشارة سفر — ٣٠ دقيقة",
+      "nameFr": "Consultation voyage — 30 min",
+      "nameEn": "Travel Consultation — 30 min",
+      "descAr": "اسأل كل أسئلتك وخطط رحلتك مع شخص عاش التجربة فعلاً",
+      "descFr": "Posez toutes vos questions avec quelqu'un qui a vécu l'expérience",
+      "descEn": "Ask all your questions and plan your trip with someone who's been there",
+      "priceSAR": 109,
+      "priceUSD": 29,
+      "prefixAr": "",
+      "prefixFr": "",
+      "prefixEn": "",
+      "noteAr": "",
+      "noteFr": "",
+      "noteEn": "",
+      "btnAr": "احجز الاستشارة",
+      "btnFr": "Réserver",
+      "btnEn": "Book Now",
+      "link": "#",
+      "featured": true,
+      "starTagAr": "",
+      "starTagFr": "",
+      "starTagEn": ""
+    },
+    {
+      "icon": "🗓️",
+      "nameAr": "خطة سفر شهر كامل",
+      "nameFr": "Itinéraire 1 mois complet",
+      "nameEn": "1-Month Itinerary",
+      "descAr": "خطة مخصصة من البداية للنهاية — وجهات، فنادق، ميزانية يومية",
+      "descFr": "Un plan personnalisé du début à la fin",
+      "descEn": "A personalized plan from start to finish — destinations, hotels, daily budget",
+      "priceSAR": 370,
+      "priceUSD": 99,
+      "prefixAr": "من ",
+      "prefixFr": "À partir de ",
+      "prefixEn": "From ",
+      "noteAr": "",
+      "noteFr": "",
+      "noteEn": "",
+      "btnAr": "اطلب خطتك",
+      "btnFr": "Commander",
+      "btnEn": "Order Your Plan",
+      "link": "#",
+      "featured": true,
+      "starTagAr": "",
+      "starTagFr": "",
+      "starTagEn": ""
+    },
+    {
+      "icon": "🌏",
+      "nameAr": "خطة سفر ٣ شهور",
+      "nameFr": "Itinéraire 3 mois",
+      "nameEn": "3-Month Itinerary",
+      "descAr": "تخطط ترحال طويل؟ خطة كاملة من أول يوم لآخر يوم",
+      "descFr": "Long voyage ? Un plan complet du premier au dernier jour",
+      "descEn": "Planning a long trip? A complete plan from day one to the last day",
+      "priceSAR": 560,
+      "priceUSD": 149,
+      "prefixAr": "من ",
+      "prefixFr": "À partir de ",
+      "prefixEn": "From ",
+      "noteAr": "",
+      "noteFr": "",
+      "noteEn": "",
+      "btnAr": "اطلب خطتك",
+      "btnFr": "Commander",
+      "btnEn": "Order Your Plan",
+      "link": "#",
+      "featured": true,
+      "starTagAr": "",
+      "starTagFr": "",
+      "starTagEn": ""
+    },
+    {
+      "icon": "📋",
+      "nameAr": "التقديم على تأشيرة أونلاين",
+      "nameFr": "Demande de Visa en Ligne",
+      "nameEn": "Online Visa Application",
+      "descAr": "أتولى تقديم طلب تأشيرتك السياحية الإلكترونية بشكل صحيح — أنت تجهّز الأوراق المطلوبة وأنا أتكفل بالتقديم",
+      "descFr": "Je soumets votre demande de visa touristique en ligne — vous préparez les documents, je m'occupe du dépôt",
+      "descEn": "I'll submit your tourist e-visa application — you prepare the required documents, I handle the submission",
+      "priceSAR": 1000,
+      "priceUSD": 267,
+      "prefixAr": "",
+      "prefixFr": "",
+      "prefixEn": "",
+      "noteAr": "بدون رسوم التأشيرة",
+      "noteFr": "Frais de visa non inclus",
+      "noteEn": "Excluding visa fees",
+      "btnAr": "اطلب الخدمة",
+      "btnFr": "Demander le service",
+      "btnEn": "Request Service",
+      "link": "#",
+      "featured": true,
+      "starTagAr": "",
+      "starTagFr": "",
+      "starTagEn": ""
+    }
+  ],
+  "legal": {
+    "ar": [
+      {
+        "title": "شروط الاستخدام",
+        "body": "<p>باستخدامك هذا الموقع أو إتمامك أي عملية شراء، فإنك تُقرّ بموافقتك الكاملة على هذه الشروط. جميع الخدمات ذات طابع <strong>استشاري ومعلوماتي</strong> حصراً. في ما يخص <strong>خدمة التقديم على التأشيرات:</strong> يتولى مقدم الخدمة التقديم إلكترونياً فحسب؛ مسؤولية تجهيز الوثائق وصحتها تقع على العميل وحده. لا يتحمل مقدم الخدمة أي مسؤولية عن نتيجة الطلب.</p>"
+      },
+      {
+        "title": "سياسة الاسترداد",
+        "body": "<p><strong>جميع المبالغ المدفوعة نهائية وغير قابلة للاسترداد</strong> بعد إتمام الشراء دون استثناء. للمنتجات الرقمية: تُرسل فور الدفع ولا يُقبل الاسترداد. للخدمات: لا يُقبل الاسترداد بعد البدء في التنفيذ.</p>"
+      },
+      {
+        "title": "سياسة الخصوصية",
+        "body": "<p>لا يخزّن هذا الموقع أي بيانات شخصية. عمليات الدفع تتم عبر منصات طرف ثالث آمنة. لا تُشارَك أي معلومات مع أطراف خارجية.</p>"
+      }
+    ],
+    "fr": [
+      {
+        "title": "Conditions d'utilisation",
+        "body": "<p>En utilisant ce site ou en effectuant un achat, vous acceptez les présentes conditions. Tous les services sont de nature <strong>consultative et informative</strong>. Concernant le visa : le prestataire dépose uniquement le dossier ; la préparation des documents relève du client. Aucune responsabilité n'est assumée quant au résultat.</p>"
+      },
+      {
+        "title": "Politique de remboursement",
+        "body": "<p><strong>Tous les paiements sont définitifs et non remboursables</strong>, sans exception. Produits numériques : livrés immédiatement, aucun remboursement. Services : aucun remboursement après le début de la prestation.</p>"
+      },
+      {
+        "title": "Politique de confidentialité",
+        "body": "<p>Ce site ne stocke aucune donnée personnelle. Les paiements sont traités par des plateformes tierces sécurisées. Aucune information n'est partagée avec des tiers.</p>"
+      }
+    ],
+    "en": [
+      {
+        "title": "Terms of Service",
+        "body": "<p>By using this website or completing any purchase, you agree to these terms. All services are exclusively <strong>advisory and informational</strong>. Regarding visa applications: the service provider handles the electronic submission only; the client is solely responsible for preparing and ensuring the accuracy of required documents. The service provider bears no legal or financial responsibility for the outcome of any application.</p>"
+      },
+      {
+        "title": "Refund Policy",
+        "body": "<p><strong>All payments are final and non-refundable</strong> after purchase, without exception. Digital products (guides): delivered immediately after payment, no refunds accepted. Services (consultations, travel plans, visa applications): no refunds after work has commenced.</p>"
+      },
+      {
+        "title": "Privacy Policy",
+        "body": "<p>This website does not store any personal data on its servers. Payments are processed through secure third-party platforms. No information is shared with third parties under any circumstances.</p>"
+      }
+    ]
+  }
+};
+const DEFAULT_AUTH = {"u":"8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","p":"ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270"};
+/* ==CFG_EXPORT_END== */`;
+  const out=ORIG.replace(/\/\* ==CFG_EXPORT_START== \*\/([\s\S]*?)\/\* ==CFG_EXPORT_END== \*\//,rep);
+  const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(new Blob([out],{type:'text/html'})),download:'anas-musafir.html'});
+  a.click();URL.revokeObjectURL(a.href);
+}
+
+/* ════ BOOT ════ */
+(async()=>{
+  await initState();
+  try{const r=await fetch(location.href);ORIG=await r.text()}catch(e){}
+  if(location.search.includes('edit'))openAdmin();
+  renderPage();
+})();
+</script>
+</body>
+</html>
