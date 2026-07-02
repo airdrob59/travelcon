@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>أنس — مسافر | خدمات سفر</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%230284C7'/><text x='50' y='70' text-anchor='middle' font-size='58' fill='white' font-family='Georgia,serif'>أ</text></svg>">
-<meta name="description" content="أنس — مسافر | استشارات سفر، خطط سياحية، ودليل شرق آسيا">
+<title>أنس — مسافر</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
@@ -145,6 +143,11 @@ body[data-lang="en"] .sec-en{display:block}
 .ait.open .ait-body{display:block}
 .ait-ch{font-size:9px;color:#94A3B8;transition:transform .2s;flex-shrink:0}
 .ait.open .ait-ch{transform:rotate(180deg)}
+.ait.is-hidden{opacity:.6}
+.ait.is-hidden .ait-ico{filter:grayscale(1)}
+.hid-tag{font-size:9px;font-weight:700;color:#DC2626;background:#FEF2F2;border:1px solid #FCA5A5;border-radius:999px;padding:1px 8px;flex-shrink:0}
+.vis-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;background:#F0F9FF;border:1px solid #BAE6FD;border-radius:9px;margin-bottom:12px}
+.vis-lbl{font-size:12px;font-weight:700;color:#0369A1}
 .adel{display:inline-flex;align-items:center;gap:4px;padding:5px 11px;background:none;border:1px solid #FCA5A5;border-radius:7px;color:#DC2626;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;margin-top:8px}
 .adel:hover{background:#FEF2F2}
 .aadd{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:10px;background:#F0F9FF;border:1px dashed #BAE6FD;border-radius:9px;color:#0284C7;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;margin-top:2px}
@@ -350,10 +353,11 @@ function save(){localStorage.setItem('anas_d',JSON.stringify(D));flash()}
 function redraw(){save();renderPage();renderPrev()}
 
 /* ════ RENDERER ════ */
-function buildSec(lang){
+function buildSec(lang,showHidden){
   const ar=lang==='ar',en=lang==='en';
   const T=(a,f,e)=>ar?a:en?e:f;
-  const cards=D.services.map(s=>{
+  const list=showHidden?D.services:D.services.filter(s=>!s.hidden);
+  const cards=list.map(s=>{
     const nm=T(s.nameAr,s.nameFr,s.nameEn),ds=T(s.descAr,s.descFr,s.descEn),
           bt=T(s.btnAr,s.btnFr,s.btnEn),pf=T(s.prefixAr,s.prefixFr,s.prefixEn)||'',
           nt=T(s.noteAr,s.noteFr,s.noteEn),st=s.featured?T(s.starTagAr,s.starTagFr,s.starTagEn):'';
@@ -371,8 +375,8 @@ function buildSec(lang){
   const av=(D.avatar||'').startsWith('http')||(D.avatar||'').startsWith('/')?`<img src="${esc(D.avatar)}" alt="">`:`<span>${D.avatar||'🧳'}</span>`;
   return`<div class="hero"><div class="avatar">${av}</div><h1 class="brand">${esc(br)}</h1><p class="tagline">${esc(tl)}</p><div class="badges">${(bg||[]).map(b=>`<span class="badge">${esc(b)}</span>`).join('')}</div></div><div class="label">${svcLbl}</div><div class="cards">${cards}</div><div class="socials"><div class="label">${socLbl}</div><div class="soc-row">${soc}</div></div><div class="legal"><div class="label">${legLbl}</div><div class="legal-items">${li}</div></div><p class="foot">${esc(footTxt)}</p>`;
 }
-function renderPage(){['ar','fr','en'].forEach(l=>document.getElementById('sec-'+l).innerHTML=buildSec(l))}
-function renderPrev(){['ar','fr','en'].forEach(l=>document.getElementById('pv-'+l).innerHTML=buildSec(l))}
+function renderPage(){['ar','fr','en'].forEach(l=>document.getElementById('sec-'+l).innerHTML=buildSec(l,false))}
+function renderPrev(){['ar','fr','en'].forEach(l=>document.getElementById('pv-'+l).innerHTML=buildSec(l,true))}
 
 /* ════ LANG ════ */
 const lbBtns=document.querySelectorAll('.wrap>.lang-row .lang-btn');
@@ -460,11 +464,15 @@ function tBrand(){return`
 /* ════ TAB: SERVICES ════ */
 function tServices(){
   const items=D.services.map((s,i)=>`
-  <div class="ait" id="asv${i}">
+  <div class="ait${s.hidden?' is-hidden':''}" id="asv${i}">
     <div class="ait-h" onclick="document.getElementById('asv${i}').classList.toggle('open')">
-      <span class="ait-ico">${s.icon}</span><span class="ait-nm">${esc(s.nameAr)}</span><span class="ait-ch">▼</span>
+      <span class="ait-ico">${s.icon}</span><span class="ait-nm">${esc(s.nameAr)}</span>${s.hidden?'<span class="hid-tag">مخفي</span>':''}<span class="ait-ch">▼</span>
     </div>
     <div class="ait-body">
+      <div class="vis-row">
+        <span class="vis-lbl">${s.hidden?'🚫 مخفي من الموقع':'✅ ظاهر في الموقع'}</span>
+        <label class="atgl"><input type="checkbox" ${s.hidden?'':'checked'} onchange="D.services[${i}].hidden=!this.checked;tab('svs');redraw()"><span class="atgl-s"></span></label>
+      </div>
       <div class="arow">
         <div class="af"><label class="al">أيقونة</label><input class="ai" value="${esc(s.icon)}" oninput="D.services[${i}].icon=this.value;redraw()"></div>
         <div class="af"><label class="al">رابط الدفع</label><input class="ai" value="${esc(s.link)}" placeholder="https://..." oninput="D.services[${i}].link=this.value;redraw()"></div>
@@ -509,7 +517,7 @@ function tServices(){
   return`${items}<button class="aadd" onclick="addSvc()">+ إضافة خدمة جديدة</button>`;
 }
 function addSvc(){
-  D.services.push({icon:'✨',nameAr:'خدمة جديدة',nameFr:'Nouveau service',nameEn:'New Service',descAr:'الوصف',descFr:'Description',descEn:'Description',priceSAR:0,priceUSD:0,prefixAr:'',prefixFr:'',prefixEn:'',noteAr:'',noteFr:'',noteEn:'',btnAr:'اطلب',btnFr:'Commander',btnEn:'Order',link:'#',featured:false,starTagAr:'',starTagFr:'',starTagEn:''});
+  D.services.push({icon:'✨',nameAr:'خدمة جديدة',nameFr:'Nouveau service',nameEn:'New Service',descAr:'الوصف',descFr:'Description',descEn:'Description',priceSAR:0,priceUSD:0,prefixAr:'',prefixFr:'',prefixEn:'',noteAr:'',noteFr:'',noteEn:'',btnAr:'اطلب',btnFr:'Commander',btnEn:'Order',link:'#',featured:false,hidden:false,starTagAr:'',starTagFr:'',starTagEn:''});
   tab('svs');redraw();
   setTimeout(()=>{const all=document.querySelectorAll('.ait');all[all.length-1]?.classList.add('open')},60);
 }
